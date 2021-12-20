@@ -1,21 +1,14 @@
-<svg width="100" height="120" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="100" height="120" rx="5" fill="url(#paint0_linear_22_124)"/>
-<rect x="9.94556" y="19.8801" width="80.109" height="80.2398" rx="10" fill="#6050CE"/>
-<path d="M49.9713 88.1866C65.5289 88.1866 78.1408 75.5541 78.1408 59.9711C78.1408 44.3881 65.5289 31.7556 49.9713 31.7556C34.4137 31.7556 21.8018 44.3881 21.8018 59.9711C21.8018 75.5541 34.4137 88.1866 49.9713 88.1866Z" stroke="#E47976" stroke-width="0.653951" stroke-miterlimit="10"/>
-<path d="M49.9712 72.3409C56.7917 72.3409 62.3208 66.8027 62.3208 59.9711C62.3208 53.1395 56.7917 47.6013 49.9712 47.6013C43.1507 47.6013 37.6216 53.1395 37.6216 59.9711C37.6216 66.8027 43.1507 72.3409 49.9712 72.3409Z" stroke="#E47976" stroke-width="0.653951" stroke-miterlimit="10"/>
-<path d="M49.9712 80.3536C61.3752 80.3536 70.6201 71.0936 70.6201 59.6709C70.6201 48.2483 61.3752 38.9883 49.9712 38.9883C38.5671 38.9883 29.3223 48.2483 29.3223 59.6709C29.3223 71.0936 38.5671 80.3536 49.9712 80.3536Z" stroke="#E47976" stroke-width="0.653951" stroke-miterlimit="10"/>
-<path d="M49.9712 31.7556V88.1866" stroke="#E47976" stroke-width="0.653951" stroke-miterlimit="10"/>
-<path d="M78.1408 59.9711H21.8018" stroke="#E47976" stroke-width="0.653951" stroke-miterlimit="10"/>
-<path d="M69.8912 40.0203L30.053 79.9235" stroke="#E47976" stroke-width="0.653951" stroke-miterlimit="10"/>
-<path d="M69.8912 79.9235L30.053 40.0203" stroke="#E47976" stroke-width="0.653951" stroke-miterlimit="10"/>
-<path d="M75.2839 47.5884L24.6582 72.3537" stroke="#E47976" stroke-width="0.653951" stroke-miterlimit="10"/>
-<path d="M62.3337 85.3252L37.6089 34.6169" stroke="#E47976" stroke-width="0.653951" stroke-miterlimit="10"/>
-<path d="M76.6107 69.1441L23.3318 50.7997" stroke="#E47976" stroke-width="0.653951" stroke-miterlimit="10"/>
-<path d="M40.8147 86.654L59.1292 33.2881" stroke="#E47976" stroke-width="0.653951" stroke-miterlimit="10"/>
-<defs>
-<linearGradient id="paint0_linear_22_124" x1="50" y1="0" x2="50" y2="120" gradientUnits="userSpaceOnUse">
-<stop stop-color="#8794D6" stop-opacity="0.6"/>
-<stop offset="1" stop-color="#42ACE8" stop-opacity="0.24"/>
-</linearGradient>
-</defs>
+<svg width="80" height="81" viewBox="0 0 80 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.126953" y="0.385498" width="79.8696" height="80" rx="8.47999" fill="#6050CE"/>
+<path d="M40.0331 68.488C55.5442 68.488 68.1184 55.8932 68.1184 40.3568C68.1184 24.8204 55.5442 12.2256 40.0331 12.2256C24.522 12.2256 11.9478 24.8204 11.9478 40.3568C11.9478 55.8932 24.522 68.488 40.0331 68.488Z" stroke="#E47976" stroke-width="0.55455" stroke-miterlimit="10"/>
+<path d="M40.0329 52.6895C46.833 52.6895 52.3456 47.1679 52.3456 40.3567C52.3456 33.5455 46.833 28.0239 40.0329 28.0239C33.2328 28.0239 27.7202 33.5455 27.7202 40.3567C27.7202 47.1679 33.2328 52.6895 40.0329 52.6895Z" stroke="#E47976" stroke-width="0.55455" stroke-miterlimit="10"/>
+<path d="M40.0325 60.6784C51.4025 60.6784 60.6197 51.4461 60.6197 40.0576C60.6197 28.669 51.4025 19.4368 40.0325 19.4368C28.6625 19.4368 19.4453 28.669 19.4453 40.0576C19.4453 51.4461 28.6625 60.6784 40.0325 60.6784Z" stroke="#E47976" stroke-width="0.55455" stroke-miterlimit="10"/>
+<path d="M40.0332 12.2256V68.488" stroke="#E47976" stroke-width="0.55455" stroke-miterlimit="10"/>
+<path d="M68.1184 40.3569H11.9478" stroke="#E47976" stroke-width="0.55455" stroke-miterlimit="10"/>
+<path d="M59.8935 20.4656L20.1743 60.2496" stroke="#E47976" stroke-width="0.55455" stroke-miterlimit="10"/>
+<path d="M59.8935 60.2496L20.1743 20.4656" stroke="#E47976" stroke-width="0.55455" stroke-miterlimit="10"/>
+<path d="M65.2703 28.0112L14.7959 52.7024" stroke="#E47976" stroke-width="0.55455" stroke-miterlimit="10"/>
+<path d="M52.3585 65.6352L27.7075 15.0784" stroke="#E47976" stroke-width="0.55455" stroke-miterlimit="10"/>
+<path d="M66.5928 49.5022L13.4731 31.2126" stroke="#E47976" stroke-width="0.55455" stroke-miterlimit="10"/>
+<path d="M30.9038 66.9601L49.1636 13.7537" stroke="#E47976" stroke-width="0.55455" stroke-miterlimit="10"/>
 </svg>

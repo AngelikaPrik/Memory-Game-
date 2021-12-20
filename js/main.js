@@ -1,39 +1,93 @@
 class Game {
 	constructor(settings) {
-		this.field = [
-			[],
-			[],
-			[],
-			[]
-		];
+		this.field = [];
 		this.history = [];
 		this.settings = settings;
 	}
 	init() {
 		this.field = this.getShuffledField();
 		console.log(this.field);
+		this.createField();
 	}
 	getShuffledField() {
-		let items = [0, 1, 2, 3, 4, 3, 4, 5, 0, 1, 2, 6, 7, 5, 6, 7, ];
+		let rowCount = this.settings.rowCount;
+		let items = [];
+
+		for (let i = 0; i < (rowCount * rowCount) / 2; i++) {
+			items.push(i);
+			items.push(i);
+		}
+
 		for (let i = items.length - 1; i > 0; i--) {
 			let j = Math.floor(Math.random() * (i + 1));
 			[items[i], items[j]] = [items[j], items[i]];
 		}
-		let items2D = [
-			[],
-			[],
-			[],
-			[]
-		];
+
+		let items2D = [];
+		for (let i = 0; i < rowCount; i++) {
+			items2D.push([]);
+		}
 
 		let index = 0;
-		for (let x = 0; x < 4; x++) {
-			for (let y = 0; y < 4; y++) {
+		for (let x = 0; x < rowCount; x++) {
+			for (let y = 0; y < rowCount; y++) {
 				items2D[x][y] = items[index];
 				index++;
 			}
 		}
 		return items2D;
+	}
+	createField() {
+		let rowCount = this.settings.rowCount;
+
+		let divContainer = document.querySelector(".field");
+		divContainer.style.gridTemplateColumns = `repeat(${rowCount}, 1fr)`;
+
+		$(function () {
+			$(".field").resizable({
+				maxHeight: 700,
+				maxWidth: 600,
+				minWidth: 430,
+				minHeight: 500,
+				aspectRatio: 86 / 100
+			});
+		});
+
+		divContainer.innerHTML = "";
+
+		let index = 0;
+		for (let x = 0; x < rowCount; x++) {
+			for (let y = 0; y < rowCount; y++) {
+				divContainer.innerHTML += `<div class="card" x="${x}" y="${y}">
+				<div class="front">
+					<img src="/img/shirts/${index}.svg" alt="">
+				</div>
+				<div class="back">
+	
+				</div>
+			</div>`;
+				index++;
+			}
+		}
+	}
+	static getRandomGradient() {
+
+		let hexValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e"];
+
+		function populate(a) {
+			for (let i = 0; i < 6; i++) {
+				let x = Math.round(Math.random() * 14);
+				let y = hexValues[x];
+				a += y;
+			}
+			return a;
+		}
+
+		let newColor1 = populate('#');
+		let newColor2 = populate('#');
+		let angle = Math.round(Math.random() * 360);
+
+		return "linear-gradient(" + angle + "deg, " + newColor1 + ", " + newColor2 + ")";
 	}
 	run() {
 
@@ -45,11 +99,13 @@ class Game {
 		//история ходов
 		let history = this.history;
 		//последний ход
-		let lastMove = new Move();
+		let lastStep = new Step();
 		//счетчик ходов (чтобы сбрасывать после второго)
-		let moveCounter = 0;
+		let stepCounter = 0;
 		//счетчик выигранных ходов для выхода
-		let successCounter = 0;
+		let successMoveCounter = 0;
+		//счетчик неправильных шагов подряд
+		let failedStepCounter = 0;
 		//выигрышные ли последние два хода
 		let isSuccessfulMove = false;
 
@@ -58,7 +114,7 @@ class Game {
 
 		let isStarted = false;
 
-		let cards = document.querySelectorAll(".card");
+		let cards = document.querySelectorAll(`.card`);
 
 		//ждем 2 сек до отображения
 		setTimeout(function () {
@@ -68,6 +124,10 @@ class Game {
 				let cardValue = field[x][y];
 				//todo
 				element.querySelector(".back").innerHTML = `<img src="/img/cards/${cardValue}.svg" alt="">`;
+
+				if (settings.difficult == 2) {
+					element.querySelector(".back").style.background = Game.getRandomGradient();
+				}
 				$(element).toggleClass('flipped');
 			});
 		}, 2000);
@@ -85,62 +145,56 @@ class Game {
 		cards.forEach(card => {
 			card.addEventListener("click", function () {
 				//условие для того чтобы нажатие засчиталось
-				if (!isWaiting && card != lastMove.card && isStarted) {
+				if (!isWaiting && (card != lastStep.card) && isStarted && !card.className.includes("flipped")) {
 					let x = card.getAttribute("x");
 					let y = card.getAttribute("y");
 					let cardValue = field[x][y];
 
 					console.log(cardValue);
 
-					let move = new Move(x, y, cardValue, card);
+					let move = new Step(x, y, cardValue, card);
 
-					console.log(move.card + "  " + move.backCardElement);
-
-					move.backCardElement.innerHTML = `<img src="/img/cards/${move.value}.svg" alt="">`;
-
-					console.log(move.card + "  " + move.backCardElement.innerHTML);
 					$(this).toggleClass('flipped');
 
 					//пушим ходы в историю
-					history.push(new Move(x, y, cardValue, card));
+					history.push(new Step(x, y, cardValue, card));
 
-					console.log("lastMove:" + JSON.stringify(lastMove) + "  currentMove:" + JSON.stringify(move));
-					
+					console.log("lastStep:" + JSON.stringify(lastStep) + "  currentStep:" + JSON.stringify(move));
+
 					//условие для выигранного хода
-					if (lastMove.value == move.value &&
-						moveCounter == 1) {
-							console.log("sdadsa");
+					if (lastStep.value == move.value &&
+						stepCounter == 1) {
 						isSuccessfulMove = true;
-						successCounter++;
+						successMoveCounter++;
+						failedStepCounter = 0;
 					}
 
-					lastMove = move;
-					moveCounter++;
+					lastStep = move;
+					stepCounter++;
 
 					//закрывающий второй ход
-					if (moveCounter == 2) {
+					if (stepCounter == 2) {
 						isWaiting = true;
 						setTimeout(function () {
 							if (!isSuccessfulMove) {
+								failedStepCounter++;
 								$(move.card).toggleClass('flipped');
-								$(history[history.length-2].card).toggleClass('flipped');
+								$(history[history.length - 2].card).toggleClass('flipped');
 							}
-							moveCounter = 0;
+							lastStep = new Step();
+							stepCounter = 0;
 							isSuccessfulMove = false;
-							cards.forEach(element => {
-								element.disabled = false;
-							});
 							isWaiting = false;
 						}, settings.timeout);
 
-
 					}
 					//условие проигрыша
-					if (history.length == settings.moveCountToFail) {
+					if (failedStepCounter == settings.failedMoveCountToHelp) {
 						alert("YOU LOSE");
+						failedStepCounter = 0;
 					}
 					//выход из игры (победа)
-					if (successCounter == 8) {
+					if (successMoveCounter == 8) {
 						alert("WIN");
 					}
 				} else {
@@ -151,7 +205,7 @@ class Game {
 
 	}
 }
-class Move {
+class Step {
 	constructor(x, y, value, card) {
 		//field
 		this.x = x;
@@ -170,13 +224,16 @@ class Move {
 class Settings {
 	constructor() {
 		this.timeout = 1000;
-		this.moveCountToFail = 100;
+		this.failedMoveCountToHelp = 10;
+		this.rowCount = 4;
+		this.difficult = 2;
 	}
 }
 
 
 let settings = new Settings();
 let game = new Game(settings);
+
 
 game.init();
 game.run();

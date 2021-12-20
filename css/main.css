@@ -65,11 +65,10 @@ body {
   background: linear-gradient(122.11deg, #ED8D6F 3.41%, #F3D463 97.33%);
   background-repeat: no-repeat;
   font-family: 'Inter', sans-serif;
-  height: 100vh;
+  max-height: 100%;
 }
 
 .main-container {
-  max-width: 1200px;
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -77,26 +76,25 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
 }
 
 .field {
+  width: 430px;
+  height: 500px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[4];
       grid-template-columns: repeat(4, 1fr);
-  -webkit-column-gap: 10px;
-          column-gap: 10px;
-  row-gap: 10px;
+  -webkit-column-gap: 7px;
+          column-gap: 7px;
+  row-gap: 7px;
   background-color: #fff;
   border-radius: 20px;
-  max-width: 500px;
-  padding: 30px 32px;
-}
-
-img {
-  display: block;
-  width: 100px;
-  height: 120px;
+  padding: 20px;
 }
 
 .cardContainer {
@@ -110,8 +108,6 @@ img {
 }
 
 .card {
-  width: 100px;
-  height: 120px;
   cursor: pointer;
   /*transition effects */
   -webkit-transition: -webkit-transform 0.6s;
@@ -127,6 +123,12 @@ img {
   transform: rotateY(180deg);
 }
 
+.card .back {
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(135, 148, 214, 0.6)), to(rgba(66, 172, 232, 0.24)));
+  background: linear-gradient(180deg, rgba(135, 148, 214, 0.6) 0%, rgba(66, 172, 232, 0.24) 100%);
+  border-radius: 5px;
+}
+
 .card .front,
 .card .back {
   display: block;
@@ -140,7 +142,27 @@ img {
   backface-visibility: hidden;
 }
 
+.card .front img {
+  width: 100%;
+  height: inherit;
+}
+
 .card .back {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.card .back img {
+  width: 80%;
 }
