@@ -1,21 +1,81 @@
 @import "_nullstyle";
 
 body {
+	font-family: 'Inter', sans-serif;
+	max-height: 100%;
 	background: linear-gradient(122.11deg, #ED8D6F 3.41%, #F3D463 97.33%);
 	background-repeat: no-repeat;
-	font-family: 'Inter', sans-serif;
-	max-height: 100%
-}
-header {
 }
 
+// splash screen start
+.start_menu {
+
+	&.main-container {
+		flex-direction: column;
+	}
+}
+
+.splash-screen {
+	background-color: #fff;
+	padding: 50px 70px;
+	border-radius: 40px;
+}
+
+h1 {
+	&.startHead {
+		margin: 0;
+		padding: 0;
+		text-transform: uppercase;
+		font-weight: 900;
+		text-align: center;
+		font-family: "Impact", sans-serif;
+		font-size: 132px;
+		background: linear-gradient(180deg, rgb(243, 212, 99), rgb(237, 141, 111));
+		background-size: auto 500%;
+		background-clip: text;
+		text-fill-color: transparent;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		animation: background 1s ease infinite;
+		background-position: center 100%;
+	}
+}
+
+@keyframes background {
+	from {
+		background-position: center 0;
+	}
+
+	50% {
+		background-position: center 100%;
+	}
+
+	to {
+		background-position: center 0;
+	}
+}
+
+#myProgress {
+	margin-top: 20px;
+	width: 20%;
+	background-color: #fff;
+	border-radius: 40px;
+}
+
+#myBar {
+	width: 1%;
+	height: 16px;
+	background-color: #F3D463;
+	border-radius: 40px;
+}
+
+// splash screen end
 .main-container {
 	margin: 0 auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 100%;
-
 }
 
 .field {
@@ -72,6 +132,7 @@ header {
 	background: linear-gradient(180deg, rgba(135, 148, 214, 0.6) 0%, rgba(66, 172, 232, 0.24) 100%);
 	border-radius: 5px;
 }
+
 .card .front,
 .card .back {
 	display: block;
@@ -86,9 +147,10 @@ header {
 	-o-backface-visibility: hidden;
 	backface-visibility: hidden;
 }
+
 .card .front img {
 	width: 100%;
-	height: inherit; 
+	height: inherit;
 }
 
 .card .back {
@@ -105,4 +167,32 @@ header {
 
 .card .back img {
 	width: 80%;
+}
+
+.ui-icon,
+.ui-widget-content {
+	border: none !important;
+
+	.ui-icon {
+		background-image: url(/img/icons/resize.svg) !important;
+	}
+}
+
+.ui-icon-gripsmall-diagonal-se {
+	background-position: 0% !important;
+}
+
+.ui-resizable-se {
+	right: 5px !important;
+	bottom: 5px !important;
+}
+
+
+// в конце css документа 
+
+@font-face {
+	font-family: "Impact";
+	font-family: "Inter";
+	src: url(/fonts/inte);
+	src: url(/fonts/impact_font/impact.ttf);
 }

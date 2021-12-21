@@ -62,10 +62,81 @@ img {
 }
 
 body {
-  background: linear-gradient(122.11deg, #ED8D6F 3.41%, #F3D463 97.33%);
-  background-repeat: no-repeat;
   font-family: 'Inter', sans-serif;
   max-height: 100%;
+  background: linear-gradient(122.11deg, #ED8D6F 3.41%, #F3D463 97.33%);
+  background-repeat: no-repeat;
+}
+
+.start_menu.main-container {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.splash-screen {
+  background-color: #fff;
+  padding: 50px 70px;
+  border-radius: 40px;
+}
+
+h1.startHead {
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  font-weight: 900;
+  text-align: center;
+  font-family: "Impact", sans-serif;
+  font-size: 132px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f3d463), to(#ed8d6f));
+  background: linear-gradient(180deg, #f3d463, #ed8d6f);
+  background-size: auto 500%;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation: background 1s ease infinite;
+          animation: background 1s ease infinite;
+  background-position: center 100%;
+}
+
+@-webkit-keyframes background {
+  from {
+    background-position: center 0;
+  }
+  50% {
+    background-position: center 100%;
+  }
+  to {
+    background-position: center 0;
+  }
+}
+
+@keyframes background {
+  from {
+    background-position: center 0;
+  }
+  50% {
+    background-position: center 100%;
+  }
+  to {
+    background-position: center 0;
+  }
+}
+
+#myProgress {
+  margin-top: 20px;
+  width: 20%;
+  background-color: #fff;
+  border-radius: 40px;
+}
+
+#myBar {
+  width: 1%;
+  height: 16px;
+  background-color: #F3D463;
+  border-radius: 40px;
 }
 
 .main-container {
@@ -165,4 +236,30 @@ body {
 
 .card .back img {
   width: 80%;
+}
+
+.ui-icon,
+.ui-widget-content {
+  border: none !important;
+}
+
+.ui-icon .ui-icon,
+.ui-widget-content .ui-icon {
+  background-image: url(/img/icons/resize.svg) !important;
+}
+
+.ui-icon-gripsmall-diagonal-se {
+  background-position: 0% !important;
+}
+
+.ui-resizable-se {
+  right: 5px !important;
+  bottom: 5px !important;
+}
+
+@font-face {
+  font-family: "Impact";
+  font-family: "Inter";
+  src: url(/fonts/inte);
+  src: url(/fonts/impact_font/impact.ttf);
 }

@@ -1,43 +1,16 @@
 class Game {
 	constructor(settings) {
 		this.field = [];
-		this.history = [];
 		this.settings = settings;
+		this.isStarted = false;
+		this.isWaiting = false;
 	}
 	init() {
-		this.field = this.getShuffledField();
-		console.log(this.field);
 		this.createField();
 	}
-	getShuffledField() {
-		let rowCount = this.settings.rowCount;
-		let items = [];
-
-		for (let i = 0; i < (rowCount * rowCount) / 2; i++) {
-			items.push(i);
-			items.push(i);
-		}
-
-		for (let i = items.length - 1; i > 0; i--) {
-			let j = Math.floor(Math.random() * (i + 1));
-			[items[i], items[j]] = [items[j], items[i]];
-		}
-
-		let items2D = [];
-		for (let i = 0; i < rowCount; i++) {
-			items2D.push([]);
-		}
-
-		let index = 0;
-		for (let x = 0; x < rowCount; x++) {
-			for (let y = 0; y < rowCount; y++) {
-				items2D[x][y] = items[index];
-				index++;
-			}
-		}
-		return items2D;
-	}
 	createField() {
+		this.field = this.getShuffledField();
+
 		let rowCount = this.settings.rowCount;
 
 		let divContainer = document.querySelector(".field");
@@ -70,6 +43,34 @@ class Game {
 			}
 		}
 	}
+	getShuffledField() {
+		let rowCount = this.settings.rowCount;
+		let items = [];
+
+		for (let i = 0; i < (rowCount * rowCount) / 2; i++) {
+			items.push(i);
+			items.push(i);
+		}
+
+		for (let i = items.length - 1; i > 0; i--) {
+			let j = Math.floor(Math.random() * (i + 1));
+			[items[i], items[j]] = [items[j], items[i]];
+		}
+
+		let items2D = [];
+		for (let i = 0; i < rowCount; i++) {
+			items2D.push([]);
+		}
+
+		let index = 0;
+		for (let x = 0; x < rowCount; x++) {
+			for (let y = 0; y < rowCount; y++) {
+				items2D[x][y] = items[index];
+				index++;
+			}
+		}
+		return items2D;
+	}
 	static getRandomGradient() {
 
 		let hexValues = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e"];
@@ -94,25 +95,23 @@ class Game {
 		//объект с настройками
 		let settings = this.settings;
 
+		let statistic = new Statistic();
+
 		//поле со значениями уже перемешанное
 		let field = this.field;
-		//история ходов
-		let history = this.history;
-		//последний ход
+
+		//последний шаг
 		let lastStep = new Step();
+
 		//счетчик ходов (чтобы сбрасывать после второго)
 		let stepCounter = 0;
-		//счетчик выигранных ходов для выхода
-		let successMoveCounter = 0;
-		//счетчик неправильных шагов подряд
-		let failedStepCounter = 0;
-		//выигрышные ли последние два хода
-		let isSuccessfulMove = false;
 
 		//ожидание закрытия карточки
 		let isWaiting = false;
 
 		let isStarted = false;
+
+		let isSuccessfulMove = 0;
 
 		let cards = document.querySelectorAll(`.card`);
 
@@ -152,49 +151,50 @@ class Game {
 
 					console.log(cardValue);
 
-					let move = new Step(x, y, cardValue, card);
+					let step = new Step(x, y, cardValue, card);
 
 					$(this).toggleClass('flipped');
 
 					//пушим ходы в историю
-					history.push(new Step(x, y, cardValue, card));
+					statistic.history.push(new Step(x, y, cardValue, card));
+					console.log(statistic.history);
 
-					console.log("lastStep:" + JSON.stringify(lastStep) + "  currentStep:" + JSON.stringify(move));
+					console.log("lastStep:" + JSON.stringify(lastStep) + "  currentStep:" + JSON.stringify(step));
 
-					//условие для выигранного хода
-					if (lastStep.value == move.value &&
-						stepCounter == 1) {
-						isSuccessfulMove = true;
-						successMoveCounter++;
-						failedStepCounter = 0;
-					}
-
-					lastStep = move;
 					stepCounter++;
+					//условие для выигранного хода
+					if (lastStep.value == step.value &&
+						stepCounter == 2) {
+						isSuccessfulMove = true;
+						statistic.successMoveCounter++;
+						statistic.failedStepCounter = 0;
+					}
+					lastStep = step;
 
-					//закрывающий второй ход
 					if (stepCounter == 2) {
 						isWaiting = true;
 						setTimeout(function () {
 							if (!isSuccessfulMove) {
-								failedStepCounter++;
-								$(move.card).toggleClass('flipped');
-								$(history[history.length - 2].card).toggleClass('flipped');
+								statistic.failedStepCounter++;
+								$(step.card).toggleClass('flipped');
+								$(statistic.history[statistic.history.length - 2].card).toggleClass('flipped');
 							}
 							lastStep = new Step();
 							stepCounter = 0;
-							isSuccessfulMove = false;
 							isWaiting = false;
+							isSuccessfulMove = false;
 						}, settings.timeout);
-
 					}
+
+
+					//закрывающий второй ход
 					//условие проигрыша
-					if (failedStepCounter == settings.failedMoveCountToHelp) {
+					if (statistic.failedStepCounter == settings.failedMoveCountToHelp) {
 						alert("YOU LOSE");
-						failedStepCounter = 0;
+						statistic.failedStepCounter = 0;
 					}
 					//выход из игры (победа)
-					if (successMoveCounter == 8) {
+					if (statistic.successMoveCounter == (settings.rowCount * settings.rowCount) / 2) {
 						alert("WIN");
 					}
 				} else {
@@ -205,6 +205,7 @@ class Game {
 
 	}
 }
+
 class Step {
 	constructor(x, y, value, card) {
 		//field
@@ -220,13 +221,32 @@ class Step {
 
 	}
 }
+class Move {
+	constructor(firstStep, secondStep, isSuccessfulMove) {
+		this.fisrtStep = firstStep;
+		this.secondStep = secondStep;
+		//выигрышный ли последний ход
+		this.isSuccessfulMove = isSuccessfulMove;
+	}
+}
 
 class Settings {
 	constructor() {
 		this.timeout = 1000;
 		this.failedMoveCountToHelp = 10;
-		this.rowCount = 4;
-		this.difficult = 2;
+		this.rowCount = 6;
+		this.difficult = 1;
+	}
+}
+
+class Statistic {
+	constructor() {
+		//счетчик выигранных ходов для выхода
+		this.successMoveCounter = 0;
+		//счетчик неправильных шагов подряд
+		this.failedStepCounter = 0;
+		//история step
+		this.history = [];
 	}
 }
 
