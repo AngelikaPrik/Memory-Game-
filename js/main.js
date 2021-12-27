@@ -131,6 +131,7 @@ class Game {
 			});
 		}, 2000);
 		//после 5 секунд закрываем
+		
 		//откладываем функцию на потом
 		setTimeout(function () {
 			cards.forEach(element => {
@@ -140,7 +141,7 @@ class Game {
 			isStarted = true;
 		}, 5000);
 
-		//вся игра на клике.....
+		//игра на клике
 		cards.forEach(card => {
 			card.addEventListener("click", function () {
 				//условие для того чтобы нажатие засчиталось
@@ -195,7 +196,7 @@ class Game {
 					}
 					//выход из игры (победа)
 					if (statistic.successMoveCounter == (settings.rowCount * settings.rowCount) / 2) {
-						alert("WIN");
+						showWinWindow();
 					}
 				} else {
 					console.log("нельзя");
@@ -231,11 +232,11 @@ class Move {
 }
 
 class Settings {
-	constructor() {
+	constructor(sizeField, difficult) {
 		this.timeout = 1000;
 		this.failedMoveCountToHelp = 10;
-		this.rowCount = 6;
-		this.difficult = 1;
+		this.rowCount = sizeField;
+		this.difficult = difficult;
 	}
 }
 
@@ -249,11 +250,3 @@ class Statistic {
 		this.history = [];
 	}
 }
-
-
-let settings = new Settings();
-let game = new Game(settings);
-
-
-game.init();
-game.run();
