@@ -11,6 +11,24 @@
 </head>
 
 <body>
+	<div class="menu-container" style="display: none;">
+		<div class="menu-burger">
+			<div class="menu">
+				<span></span>
+			</div>
+			<div class="menu__items">
+				<button class="sound">
+					<img src="/img/icons/sound.svg" alt="">
+				</button>
+				<button class="music">
+					<img src="/img/icons/music.svg" alt="">
+				</button>
+				<button class="bg">
+					<img src="/img/icons/bgTheme.svg" alt="">
+				</button>
+			</div>
+		</div>
+	</div>
 	<div class="main-container">
 		<div class="loading__block">
 			<div class="splash-screen">
@@ -21,22 +39,6 @@
 			</div>
 		</div>
 		<div class="starting__block" style="display: none;">
-			<div class="menu-burger">
-				<div class="menu">
-					<span></span>
-				</div>
-				<div class="menu__items">
-					<button class="sound">
-						<img src="/img/icons/sound.svg" alt="">
-					</button>
-					<button class="music">
-						<img src="/img/icons/music.svg" alt="">
-					</button>
-					<button class="bg">
-						<img src="/img/icons/bgTheme.svg" alt="">
-					</button>
-				</div>
-			</div>
 			<div class="welcome__window" style="display: none;">
 				<div class="window__text">
 					Привет 
@@ -104,8 +106,10 @@
 	</div>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/navigation.js"></script>
+	<script src="js/game/main.js"></script>
+	<script src="js/navigation/navigation_methods.js"></script>
+	<script src="js/navigation/navigation.js"></script>
+	<script src="js/app.js"></script>
 </body>
 
 </html>
