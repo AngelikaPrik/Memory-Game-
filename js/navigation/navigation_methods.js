@@ -57,7 +57,7 @@ function startProgress() {
 				width++;
 				elem.style.width = width + "%";
 			}
-		}
+		};
 		let id = setInterval(frame, 10);
 	}
 }

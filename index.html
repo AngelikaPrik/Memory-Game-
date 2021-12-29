@@ -11,99 +11,104 @@
 </head>
 
 <body>
-	<div class="menu-container" style="display: none;">
-		<div class="menu-burger">
-			<div class="menu">
-				<span></span>
-			</div>
-			<div class="menu__items">
-				<button class="sound">
-					<img src="/img/icons/sound.svg" alt="">
-				</button>
-				<button class="music">
-					<img src="/img/icons/music.svg" alt="">
-				</button>
-				<button class="bg">
-					<img src="/img/icons/bgTheme.svg" alt="">
-				</button>
+	<div class="huge-container">
+		<div class="menu-container" style="display: none;">
+			<div class="menu-burger">
+				<div class="menu">
+					<span></span>
+				</div>
+				<div class="menu__items">
+					<button class="sound">
+						<img src="/img/icons/sound.svg" alt="">
+					</button>
+					<button class="music">
+						<img src="/img/icons/music.svg" alt="">
+					</button>
+					<button class="bg">
+						<img src="/img/icons/bgTheme.svg" alt="">
+					</button>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="main-container">
-		<div class="loading__block">
-			<div class="splash-screen">
-				<h1 class="startHead">M</h1>
-			</div>
-			<div id="myProgress">
-				<div id="myBar"></div>
-			</div>
-		</div>
-		<div class="starting__block" style="display: none;">
-			<div class="welcome__window" style="display: none;">
-				<div class="window__text">
-					Привет 
-					<img id="gif-icon" src="/img/download.gif" alt="">
-					<br>Это игра <span class="game__name">Memory</span>
-					<br>Перейдем к правилам игры?
+		<div class="main-container">
+			<div class="loading__block">
+				<div class="splash-screen">
+					<h1 class="startHead">M</h1>
 				</div>
-				<div class="window__btns">
-					<a id="btn1" class="window__btn">Да</a>
-
-					<a id="btn2" class="window__btn">Я знаю</a>
-				</div>
-
-			</div>
-			<div class="game-rules__window" style="display: none;">
-				<div class="window__text">
-					Перед тобой выкладываются карточки в любом порядке рубашкой вверх. За один ход ты можешь открыть две
-					карточки. Если нашёл пару - они остаются открытыми. Чем быстрее найдешь все пары, тем скорее выиграешь!
-				</div>
-				<div class="window__btns">
-					<a id="btn3" class="window__btn">Поехали!</a>
-
+				<div id="myProgress">
+					<div id="myBar"></div>
 				</div>
 			</div>
-			<div class="settings__window" style="display: none;">
-				<h2>Настройки игры</h2>
-				<div class="settings__window-block">
-					<div class="settings__name">
-						<div class="size__title">Размер поля</div>
-						<div class="difficult__title">Сложность</div>
+			<div class="starting__block" style="display: none;">
+				<div class="welcome__window" style="display: none;">
+					<div class="window__text">
+						Привет 
+						<img id="gif-icon" src="/img/emoji/hi.gif" alt="">
+						<br>Это игра <span class="game__name">Memory</span>
+						<br>Перейдем к правилам игры?
 					</div>
-					<div class="settings__values">
-						<div class="size-4 selected">
-							<span>4 X 4</span>
-						</div>
-						<div class="size-6">
-							<span>6 X 6</span>
-						</div>
-						<div class="easy-game selected">
-							<span>Легко</span>
-						</div>
-						<div class="hard-game">
-							<span>Сложно</span>
-						</div>
+					<div class="window__btns">
+						<a id="btn1" class="window__btn">Да</a>
+	
+						<a id="btn2" class="window__btn">Я знаю</a>
+					</div>
+	
+				</div>
+				<div class="game-rules__window" style="display: none;">
+					<div class="window__text">
+						Перед тобой выкладываются карточки в любом порядке рубашкой вверх. За один ход ты можешь открыть две
+						карточки. Если нашёл пару - они остаются открытыми. Чем быстрее найдешь все пары, тем скорее выиграешь!
+					</div>
+					<div class="window__btns">
+						<a id="btn3" class="window__btn">Поехали!</a>
+	
 					</div>
 				</div>
-				<div class="window__btns">
-					<a id="btn4" class="window__btn">Начать</a>
+				<div class="settings__window" style="display: none;">
+					<h2>Настройки игры</h2>
+					<div class="settings__window-block">
+						<div class="settings__name">
+							<div class="size__title">Размер поля</div>
+							<div class="difficult__title">Сложность</div>
+						</div>
+						<div class="settings__values">
+							<div class="size-4 selected">
+								<span>4 X 4</span>
+							</div>
+							<div class="size-6">
+								<span>6 X 6</span>
+							</div>
+							<div class="easy-game selected">
+								<span>Легко</span>
+							</div>
+							<div class="hard-game">
+								<span>Сложно</span>
+							</div>
+						</div>
+					</div>
+					<div class="window__btns">
+						<a id="btn4" class="window__btn">Начать</a>
+					</div>
 				</div>
-			</div>
-			<div class="win__window" style="display: none;">
-				<div class="window__text">
-					ВЫИГРАЛ!
-				</div>
-				<div class="window__btns">
-					<a id="btn5" class="window__btn">Заново</a>
+				<div class="win__window" style="display: none;">
+					<div class="window__text">
+						ВЫИГРАЛ!
+					</div>
+					<div class="window__btns">
+						<a id="btn5" class="window__btn">Заново</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="field-container" style="display: none;">
+		<div class="field-container" style="display: none;">
+			<div class="field cardContainer ui-widget-content"></div>
+			<div class="counter__block">
+				<p class="counter">0</p>
+			</div>
+		</div>
 		
-		<div class="field cardContainer ui-widget-content"></div>
-		<div class="scores"></div>
 	</div>
+	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 	<script src="js/game/main.js"></script>

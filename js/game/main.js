@@ -131,7 +131,7 @@ class Game {
 			});
 		}, 2000);
 		//после 5 секунд закрываем
-		
+
 		//откладываем функцию на потом
 		setTimeout(function () {
 			cards.forEach(element => {
@@ -139,7 +139,10 @@ class Game {
 			});
 			//todo перед начало игры
 			isStarted = true;
+			countdown();
 		}, 5000);
+
+
 
 		//игра на клике
 		cards.forEach(card => {
@@ -249,4 +252,14 @@ class Statistic {
 		//история step
 		this.history = [];
 	}
+}
+
+// таймер времени
+let counter;
+let x = 0; 
+
+function countdown(){  
+	document.querySelector(".counter").innerHTML = x;
+	x++;
+	counter = setTimeout(countdown, 1000);
 }
