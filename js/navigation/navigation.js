@@ -27,6 +27,10 @@ let btnHard = document.querySelector(".hard-game");
 let menuBtn = document.querySelector(".menu");
 let menuItems = document.querySelector(".menu__items");
 
+// audio 
+const clickSound = new Audio("audio/clickCard.mp3");
+const successMoveSound = new Audio ("audio/successStep.mp3");
+
 btn1.addEventListener("click", showGameRules);
 
 btn2.addEventListener("click", showSettings);
@@ -68,7 +72,6 @@ btnEasy.addEventListener("click", function(){
 
 btnHard.addEventListener("click", function(){
 	setting_difficult = 2;
-	console.log("22")
 	if (!$(this).hasClass("selected")) {
 		$(this).toggleClass("selected");
 		$(btnEasy).toggleClass("selected");

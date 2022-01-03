@@ -139,12 +139,13 @@ class Game {
 			});
 			//todo перед начало игры
 			isStarted = true;
+			xCounter = 0;
 			countdown();
 		}, 5000);
 
 
 
-		//игра на клике
+		//на клике
 		cards.forEach(card => {
 			card.addEventListener("click", function () {
 				//условие для того чтобы нажатие засчиталось
@@ -152,8 +153,9 @@ class Game {
 					let x = card.getAttribute("x");
 					let y = card.getAttribute("y");
 					let cardValue = field[x][y];
-
 					console.log(cardValue);
+					
+					clickSound.play();
 
 					let step = new Step(x, y, cardValue, card);
 
@@ -169,6 +171,7 @@ class Game {
 					//условие для выигранного хода
 					if (lastStep.value == step.value &&
 						stepCounter == 2) {
+						successMoveSound.play();
 						isSuccessfulMove = true;
 						statistic.successMoveCounter++;
 						statistic.failedStepCounter = 0;
@@ -200,6 +203,7 @@ class Game {
 					//выход из игры (победа)
 					if (statistic.successMoveCounter == (settings.rowCount * settings.rowCount) / 2) {
 						showWinWindow();
+						xCounter = 0;
 					}
 				} else {
 					console.log("нельзя");
@@ -256,10 +260,10 @@ class Statistic {
 
 // таймер времени
 let counter;
-let x = 0; 
+let xCounter;
 
-function countdown(){  
-	document.querySelector(".counter").innerHTML = x;
-	x++;
+function countdown(){
+	document.querySelector(".counter").innerHTML = xCounter;
+	xCounter++;
 	counter = setTimeout(countdown, 1000);
 }
