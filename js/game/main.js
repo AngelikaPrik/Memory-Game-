@@ -154,8 +154,8 @@ class Game {
 					let y = card.getAttribute("y");
 					let cardValue = field[x][y];
 					console.log(cardValue);
-					
-					clickSound.play();
+
+					new Audio("audio/clickCard.mp3").play();
 
 					let step = new Step(x, y, cardValue, card);
 
@@ -168,10 +168,11 @@ class Game {
 					console.log("lastStep:" + JSON.stringify(lastStep) + "  currentStep:" + JSON.stringify(step));
 
 					stepCounter++;
+
 					//условие для выигранного хода
 					if (lastStep.value == step.value &&
 						stepCounter == 2) {
-						successMoveSound.play();
+						new Audio("audio/successStep.mp3").play();
 						isSuccessfulMove = true;
 						statistic.successMoveCounter++;
 						statistic.failedStepCounter = 0;
@@ -180,6 +181,9 @@ class Game {
 
 					if (stepCounter == 2) {
 						isWaiting = true;
+						if (!isSuccessfulMove) {
+							
+						}
 						setTimeout(function () {
 							if (!isSuccessfulMove) {
 								statistic.failedStepCounter++;
@@ -262,7 +266,7 @@ class Statistic {
 let counter;
 let xCounter;
 
-function countdown(){
+function countdown() {
 	document.querySelector(".counter").innerHTML = xCounter;
 	xCounter++;
 	counter = setTimeout(countdown, 1000);

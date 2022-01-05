@@ -4,6 +4,8 @@ start();
 
 function start() {
 	startProgress();
+	
+	
 }
 
 function hideLoadingWindow() {
@@ -11,6 +13,14 @@ function hideLoadingWindow() {
 	$(starting_block).show();
 	$(welcome_window).show();
 	$(menu_container).show();
+	
+	mainMelody.volume = 1;
+	mainMelody.play();
+	
+	mainMelody.addEventListener("ended", function() {
+      this.currentTime = 0;
+      this.play();
+   }, false);
 }
 
 function showFieldAndStartGame(sizeField, difficult) {

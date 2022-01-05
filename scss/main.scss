@@ -11,12 +11,14 @@ body {
 	user-select: none;
 	color: #f8924f;
 }
+
 .huge-container {
 	display: flex;
 	max-width: 1000px;
 	margin: 0 auto;
 	padding-top: 70px;
 }
+
 // splash screen start
 .start_menu {
 	flex-direction: column;
@@ -168,13 +170,13 @@ h1 {
 	flex-direction: column;
 	position: absolute;
 	top: 110px;
-	
+
 	transition: opacity .55s;
 
 	button {
 		background-color: #fff;
 		padding: 6px 10px;
-		margin-bottom: 10px;
+		margin-bottom: 20px;
 		border-radius: 5px;
 	}
 
@@ -182,6 +184,31 @@ h1 {
 		display: flex;
 		opacity: 1;
 	}
+}
+
+input[type="range"] {
+	background-color: black;
+}
+
+.volume {
+	border-radius: 5px;
+	position: relative;
+	bottom: 10px;
+}
+
+.ui-slider-horizontal {
+	height: 6px !important;
+}
+
+.ui-slider-range {
+	background: #F4CD66 !important;
+}
+
+.ui-slider-handle {
+	width: 13px !important;
+	height: 13px !important;
+	background-color: #F4CD66 !important;
+	border-radius: 50% !important;
 }
 
 .starting__block {
@@ -489,6 +516,7 @@ h1 {
 	right: 5px !important;
 	bottom: 5px !important;
 }
+
 .counter__block {
 	width: 60px;
 	height: 60px;
@@ -501,8 +529,9 @@ h1 {
 	position: absolute;
 	right: 80px;
 }
+
 .counter {
-	background: linear-gradient(45deg, rgba(239, 153, 110, 1),rgba(243, 196, 103, 1));
+	background: linear-gradient(45deg, rgba(239, 153, 110, 1), rgba(243, 196, 103, 1));
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 
