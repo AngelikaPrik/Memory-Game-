@@ -1,8 +1,9 @@
+let isStarted = false;
+
 class Game {
 	constructor(settings) {
 		this.field = [];
 		this.settings = settings;
-		this.isStarted = false;
 		this.isWaiting = false;
 	}
 	init() {
@@ -33,7 +34,7 @@ class Game {
 			for (let y = 0; y < rowCount; y++) {
 				divContainer.innerHTML += `<div class="card" x="${x}" y="${y}">
 				<div class="front">
-					<img src="/img/shirts/${index}.svg" alt="">
+					<img src="img/shirts/${index}.svg" alt="">
 				</div>
 				<div class="back">
 	
@@ -109,8 +110,6 @@ class Game {
 		//ожидание закрытия карточки
 		let isWaiting = false;
 
-		let isStarted = false;
-
 		let isSuccessfulMove = 0;
 
 		let cards = document.querySelectorAll(`.card`);
@@ -122,7 +121,7 @@ class Game {
 				let y = element.getAttribute("y");
 				let cardValue = field[x][y];
 				//todo
-				element.querySelector(".back").innerHTML = `<img src="/img/cards/${cardValue}.svg" alt="">`;
+				element.querySelector(".back").innerHTML = `<img src="img/cards/${cardValue}.svg" alt="">`;
 
 				if (settings.difficult == 2) {
 					element.querySelector(".back").style.background = Game.getRandomGradient();
@@ -182,7 +181,7 @@ class Game {
 					if (stepCounter == 2) {
 						isWaiting = true;
 						if (!isSuccessfulMove) {
-							
+
 						}
 						setTimeout(function () {
 							if (!isSuccessfulMove) {
@@ -203,11 +202,14 @@ class Game {
 					if (statistic.failedStepCounter == settings.failedMoveCountToHelp) {
 						alert("YOU LOSE");
 						statistic.failedStepCounter = 0;
+						xCounter = 0;
+						isStarted = false;
 					}
 					//выход из игры (победа)
 					if (statistic.successMoveCounter == (settings.rowCount * settings.rowCount) / 2) {
 						showWinWindow();
 						xCounter = 0;
+						isStarted = false;
 					}
 				} else {
 					console.log("нельзя");
@@ -267,7 +269,9 @@ let counter;
 let xCounter;
 
 function countdown() {
-	document.querySelector(".counter").innerHTML = xCounter;
-	xCounter++;
-	counter = setTimeout(countdown, 1000);
+	if (isStarted) {
+		document.querySelector(".counter").innerHTML = xCounter;
+		xCounter++;
+		counter = setTimeout(countdown, 1000);
+	}
 }

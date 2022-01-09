@@ -27,6 +27,7 @@ function showFieldAndStartGame(sizeField, difficult) {
 	$(settings_window).hide();
 	$(main_container).hide();
 	$(field_container).show();
+	$(counter_block).show();
 
 	let settings = new Settings(sizeField, difficult);
 	let game = new Game(settings);
@@ -50,6 +51,7 @@ function showWinWindow(){
 	$(field_container).hide();
 	$(main_container).show();
 	$(win_window).show();
+	score.textContent = `Твоё время: ${xCounter}`;
 }
 
 function startProgress() {

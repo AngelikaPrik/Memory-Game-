@@ -6,8 +6,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Memory</title>
-	<link rel="stylesheet" href="/css/main.css">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+	<link rel="icon" type="image/svg+xml" href="img/icons/favicon.svg">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -19,16 +20,16 @@
 				</div>
 				<div class="menu__items">
 					<button class="sound">
-						<img src="/img/icons/sound.svg" alt="">
+						<img src="img/icons/sound.svg" alt="">
 					</button>
 					<button class="music">
-						<img src="/img/icons/music.svg" alt="">
+						<img id="music" src="img/icons/music.svg" alt="">
 					</button>
 					<div class="volume">
 						<div class="volume__control"></div>
 					</div>
 					<button class="bg">
-						<img src="/img/icons/bgTheme.svg" alt="">
+						<img src="img/icons/bgTheme.svg" alt="">
 					</button>
 				</div>
 			</div>
@@ -46,7 +47,7 @@
 				<div class="welcome__window" style="display: none;">
 					<div class="window__text">
 						Привет 
-						<img id="gif-icon" src="/img/emoji/hi.gif" alt="">
+						<img id="gif-icon" src="img/emoji/hi.gif" alt="">
 						<br>Это игра <span class="game__name">Memory</span>
 						<br>Перейдем к правилам игры?
 					</div>
@@ -94,8 +95,7 @@
 					</div>
 				</div>
 				<div class="win__window" style="display: none;">
-					<div class="window__text">
-						ВЫИГРАЛ!
+					<div class="window__text score">
 					</div>
 					<div class="window__btns">
 						<a id="btn5" class="window__btn">Заново</a>
@@ -105,11 +105,10 @@
 		</div>
 		<div class="field-container" style="display: none;">
 			<div class="field cardContainer ui-widget-content"></div>
-			<div class="counter__block">
-				<p class="counter">0</p>
-			</div>
 		</div>
-		
+		<div class="counter__block" style="display: none;">
+			<p class="counter">0</p>
+		</div>
 	</div>
 	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

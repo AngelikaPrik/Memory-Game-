@@ -90,8 +90,8 @@ h1 {
 	height: 36px;
 	background-color: rgba(255, 255, 255, 0.4);
 	border-radius: 5px;
-	transition: height 0.5s;
 	position: relative;
+	transition: height 0.5s;
 
 	&::before,
 	&::after {
@@ -118,12 +118,13 @@ h1 {
 		top: 50%;
 		background-color: rgba(239, 150, 110, 0.4);
 		border-radius: 5px;
-		transition: all 0.5s ease;
+
 	}
 
 	&:hover {
 		cursor: pointer;
 		background-color: rgba(255, 255, 255, 1);
+		transition: background-color 0.5s ease;
 
 		span,
 		&::before,
@@ -170,7 +171,6 @@ h1 {
 	flex-direction: column;
 	position: absolute;
 	top: 110px;
-
 	transition: opacity .55s;
 
 	button {
@@ -178,16 +178,21 @@ h1 {
 		padding: 6px 10px;
 		margin-bottom: 20px;
 		border-radius: 5px;
+
+		&:hover {
+			transition: opacity 0.2s;
+
+			img {
+				opacity: 0.7;
+			}
+		}
 	}
 
 	&.active {
 		display: flex;
 		opacity: 1;
 	}
-}
 
-input[type="range"] {
-	background-color: black;
 }
 
 .volume {
@@ -211,10 +216,14 @@ input[type="range"] {
 	border-radius: 50% !important;
 }
 
+.ui-state-active {
+	border: none !important;
+}
+
 .starting__block {
 	display: flex;
 	justify-content: center;
-	width: 50%;
+	width: 70%;
 
 	font-size: 32px;
 	font-style: normal;
@@ -231,12 +240,11 @@ input[type="range"] {
 
 
 	.window__text {
-		text-align: left;
+		text-align: center;
 		font-size: 24px;
-		line-height: 130%;
+		line-height: 135%;
 		font-weight: 200;
 
-		.game__name {}
 	}
 
 	.window__btns {
@@ -264,11 +272,13 @@ input[type="range"] {
 
 .window__btn {
 	background: #fff;
-	border-radius: 20px;
+	border-radius: 10px;
 	cursor: pointer;
 	padding: 10px 10px;
 	min-width: 25%;
 	text-align: center;
+	transition: background 0.2s;
+	transition: color 0.2s;
 }
 
 .window__btn:hover {
@@ -290,10 +300,13 @@ input[type="range"] {
 
 	h2 {
 		text-align: center;
-		border-radius: 20px;
+		border-radius: 10px;
 		font-style: normal;
 		font-size: 36px;
+		font-weight: 100;
 		line-height: 44px;
+
+		padding: 1%;
 	}
 
 	.window__btns {
@@ -304,7 +317,7 @@ input[type="range"] {
 .settings__window-block {
 	margin-top: 85px;
 	display: grid;
-	grid-template-columns: 1.4fr 1fr;
+	grid-template-columns: 1.5fr 1fr;
 	column-gap: 50px;
 	font-size: 20px;
 }
@@ -317,7 +330,7 @@ input[type="range"] {
 		margin-bottom: 5%;
 		text-align: center;
 		border-radius: 10px;
-		padding: 10px;
+		padding: 5px;
 
 		&:last-child {
 			margin-bottom: 0;
@@ -332,7 +345,7 @@ input[type="range"] {
 	column-gap: 40px;
 
 	div {
-		padding: 10px;
+		padding: 5px;
 		border-radius: 10px;
 		cursor: pointer;
 		text-align: center;
@@ -387,7 +400,7 @@ input[type="range"] {
 }
 
 .selected {
-	box-shadow: 2px 5px 2px rgba(0, 0, 0, 0.25);
+	box-shadow: 1px 3px 1px rgba(0, 0, 0, 0.25);
 }
 
 // settings window end
@@ -526,8 +539,15 @@ input[type="range"] {
 	justify-content: center;
 	align-items: center;
 
-	position: absolute;
-	right: 80px;
+
+}
+
+// win window start
+
+.win__window {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .counter {
@@ -540,11 +560,9 @@ input[type="range"] {
 
 
 
-// в конце css документа 
-
 @font-face {
 	font-family: "Impact";
-	font-family: 'Days';
+	font-family: "Days";
 	src: url(/fonts/impact_font/impact.ttf);
-	src: url(/fonts/days2.ttf);
+	src: url(fonts/Days.ttf) format("truetype");
 }
