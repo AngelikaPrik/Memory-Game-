@@ -1,29 +1,34 @@
+' use strict ';
+
 let isProgressStarted = false;
 
 start();
 
+
+
 function start() {
 	startProgress();
-	
-	
 }
 
 function hideLoadingWindow() {
+	mainMelody.play();
 	$(loading_block).hide();
 	$(starting_block).show();
 	$(welcome_window).show();
 	$(menu_container).show();
-	
+
 	mainMelody.volume = 1;
-	mainMelody.play();
 	
-	mainMelody.addEventListener("ended", function() {
-      this.currentTime = 0;
-      this.play();
-   }, false);
+	mainMelody.addEventListener("ended", function () {
+		this.currentTime = 0;
+		this.play();
+	}, false);
+
 }
 
+
 function showFieldAndStartGame(sizeField, difficult) {
+	playSound();
 	$(settings_window).hide();
 	$(main_container).hide();
 	$(field_container).show();
@@ -35,23 +40,34 @@ function showFieldAndStartGame(sizeField, difficult) {
 	game.run();
 }
 
-function showGameRules(){
+function showGameRules() {
+	playSound();
 	$(welcome_window).hide();
 	$(game_rules_window).show();
+	$(counter_block).hide();
 }
 
 function showSettings() {
+	playSound();
 	$(game_rules_window).hide();
 	$(welcome_window).hide();
 	$(win_window).hide();
+	$(counter_block).hide();
 	$(settings_window).show();
 }
 
-function showWinWindow(){
+function showWinWindow() {
 	$(field_container).hide();
 	$(main_container).show();
 	$(win_window).show();
-	score.textContent = `Твоё время: ${xCounter}`;
+	$(counter_block).hide();
+	score.textContent = `Твоё время: ${xCounter - 1}`;
+}
+
+function playSound(){
+	if (needToPlay) {
+		new Audio("audio/soundNav.mp3").play();
+	}
 }
 
 function startProgress() {

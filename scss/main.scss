@@ -167,11 +167,10 @@ h1 {
 
 .menu__items {
 	display: flex;
-	opacity: 0;
+	visibility: hidden;
 	flex-direction: column;
 	position: absolute;
 	top: 110px;
-	transition: opacity .55s;
 
 	button {
 		background-color: #fff;
@@ -190,7 +189,7 @@ h1 {
 
 	&.active {
 		display: flex;
-		opacity: 1;
+		visibility: visible;
 	}
 
 }
@@ -284,6 +283,7 @@ h1 {
 .window__btn:hover {
 	background: #ee926e;
 	color: #fff;
+	box-shadow: 1px 3px 1px rgba(0, 0, 0, 0.25);
 }
 
 
@@ -548,6 +548,9 @@ h1 {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	& .window__text {
+		width: 300px;
+	}
 }
 
 .counter {

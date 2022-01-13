@@ -1,10 +1,11 @@
+' use strict ';
+
 let isStarted = false;
 
 class Game {
 	constructor(settings) {
 		this.field = [];
 		this.settings = settings;
-		this.isWaiting = false;
 	}
 	init() {
 		this.createField();
@@ -14,11 +15,11 @@ class Game {
 
 		let rowCount = this.settings.rowCount;
 
-		let divContainer = document.querySelector(".field");
-		divContainer.style.gridTemplateColumns = `repeat(${rowCount}, 1fr)`;
+		let fieldBlock = document.querySelector(".field");
+		fieldBlock.style.gridTemplateColumns = `repeat(${rowCount}, 1fr)`;
 
 		$(function () {
-			$(".field").resizable({
+			$(fieldBlock).resizable({
 				maxHeight: 700,
 				maxWidth: 600,
 				minWidth: 430,
@@ -27,19 +28,18 @@ class Game {
 			});
 		});
 
-		divContainer.innerHTML = "";
+		fieldBlock.innerHTML = "";
 
 		let index = 0;
 		for (let x = 0; x < rowCount; x++) {
 			for (let y = 0; y < rowCount; y++) {
-				divContainer.innerHTML += `<div class="card" x="${x}" y="${y}">
-				<div class="front">
-					<img src="img/shirts/${index}.svg" alt="">
+				fieldBlock.innerHTML += `
+				<div class="card" x="${x}" y="${y}">
+					<div class="front">
+						<img src="img/shirts/${index}.svg" alt="">
+					</div><div class="back"></div>
 				</div>
-				<div class="back">
-	
-				</div>
-			</div>`;
+				`;
 				index++;
 			}
 		}
@@ -92,7 +92,7 @@ class Game {
 		return "linear-gradient(" + angle + "deg, " + newColor1 + ", " + newColor2 + ")";
 	}
 	run() {
-
+		
 		//объект с настройками
 		let settings = this.settings;
 
@@ -154,8 +154,10 @@ class Game {
 					let cardValue = field[x][y];
 					console.log(cardValue);
 
-					new Audio("audio/clickCard.mp3").play();
-
+					if(needToPlay){
+						new Audio("audio/clickCard.mp3").play();
+					}
+					
 					let step = new Step(x, y, cardValue, card);
 
 					$(this).toggleClass('flipped');
@@ -171,7 +173,9 @@ class Game {
 					//условие для выигранного хода
 					if (lastStep.value == step.value &&
 						stepCounter == 2) {
-						new Audio("audio/successStep.mp3").play();
+						if(needToPlay) {
+							new Audio("audio/successStep.mp3").play();
+						}
 						isSuccessfulMove = true;
 						statistic.successMoveCounter++;
 						statistic.failedStepCounter = 0;

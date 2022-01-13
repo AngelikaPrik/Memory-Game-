@@ -1,3 +1,5 @@
+' use strict ';
+
 let field_container = document.querySelector(".field-container");
 let main_container = document.querySelector(".main-container");
 let menu_container = document.querySelector(".menu-container");
@@ -30,6 +32,7 @@ let btnHard = document.querySelector(".hard-game");
 let menuBtn = document.querySelector(".menu");
 let menuItems = document.querySelector(".menu__items");
 let musicBtn = document.querySelector(".music");
+let soundBtn = document.querySelector(".sound");
 let volumeArea = document.querySelector(".volume");
 let backgroundList = [
 	"linear-gradient(122.11deg, #ED8D6F 3.41%, #F3D463 97.33%)",
@@ -42,10 +45,8 @@ let backgroundBtnChange = document.querySelector(".bg");
 
 // audio 
 let mainMelody = new Audio("audio/mainMelody.mp3");
-let moveSound = new Audio("audio/clickCard.mp3");
-let successMoveSound = new Audio("audio/successStep.mp3");
 
-btn1.addEventListener("click", showGameRules, moveSound.play);
+btn1.addEventListener("click", showGameRules);
 
 btn2.addEventListener("click", showSettings);
 
@@ -66,6 +67,7 @@ btnSize_4.addEventListener("click", function () {
 		$(this).toggleClass("selected");
 		$(btnSize_6).toggleClass("selected");
 	}
+	playSound();
 });
 
 btnSize_6.addEventListener("click", function () {
@@ -74,6 +76,7 @@ btnSize_6.addEventListener("click", function () {
 		$(this).toggleClass("selected");
 		$(btnSize_4).toggleClass("selected");
 	}
+	playSound();
 });
 
 btnEasy.addEventListener("click", function () {
@@ -82,6 +85,7 @@ btnEasy.addEventListener("click", function () {
 		$(this).toggleClass("selected");
 		$(btnHard).toggleClass("selected");
 	}
+	playSound();
 });
 
 btnHard.addEventListener("click", function () {
@@ -90,6 +94,7 @@ btnHard.addEventListener("click", function () {
 		$(this).toggleClass("selected");
 		$(btnEasy).toggleClass("selected");
 	}
+	playSound();
 });
 
 
@@ -97,18 +102,11 @@ btnHard.addEventListener("click", function () {
 menuBtn.addEventListener("click", function () {
 	$(menuBtn).toggleClass("active");
 	$(menuItems).toggleClass("active");
+	playSound();
 });
 
-musicBtn.addEventListener("click", function () {
-	if (mainMelody.paused) {
-		mainMelody.play();
-		document.querySelector("#music").style.opacity = "1";
-	} else {
-		mainMelody.pause();
-		document.querySelector("#music").style.opacity = "0.3";
-	}
-});
-
+musicBtn.addEventListener("click", () => breakMelody(mainMelody));
+soundBtn.addEventListener("click", switchSound);
 // ползунок громкости
 $(volumeArea).slider({
 	animate: "slow",
@@ -121,6 +119,28 @@ function setVolume() {
 	mainMelody.volume = $(volumeArea).slider("value") / 100;
 }
 
+let needToPlay = true;
+function breakMelody(item) {
+	if (item.paused) {
+		item.play();
+		document.querySelector("#music").style.opacity = "1";
+	} else {
+		item.pause();
+		document.querySelector("#music").style.opacity = "0.3";
+	}
+	playSound();
+}
+
+function switchSound(){
+	needToPlay = !needToPlay;
+	if(needToPlay) {
+		document.querySelector("#sound").style.opacity = "1";
+	} else {
+		document.querySelector("#sound").style.opacity = "0.3";
+	}
+	playSound();
+}
+
 let index = 0;
 backgroundBtnChange.addEventListener("click", function () {
 	index++;
@@ -128,4 +148,5 @@ backgroundBtnChange.addEventListener("click", function () {
 		index = 0;
 	}
 	document.querySelector("body").style.background = backgroundList[index];
+	playSound();
 });
