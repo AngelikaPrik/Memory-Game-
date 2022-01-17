@@ -101,6 +101,8 @@ h1 {
 
 	display: grid;
 	grid-template-columns: repeat(4, 0fr);
+	column-gap: 2px;
+	row-gap: 2px;
 
 	background: #fff;
 	border-radius: 7px;
@@ -677,15 +679,17 @@ h1 {
 
 	font-size: 24px;
 	p{
-		padding: 5%;
+		padding: 2%;
 		background: #fff;
 		border-radius: 10px;
 		line-height: 100%;
 		text-align: left;
+		display: flex;
+		align-items: center;
 	}
 	span {
 		background: #fff;
-		padding: 5%;
+		padding: 2%;
 		border-radius: 10px;
 		color: #f46666;
 		display: flex;

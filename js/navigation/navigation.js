@@ -14,7 +14,7 @@ const settings_window = document.querySelector(".settings__window");
 const win_window = document.querySelector(".win__window");
 const homeBtn = document.querySelector(".home");
 const score = document.querySelector(".score");
-
+const socials = document.querySelector(".socials");
 
 // navigation buttons
 const btn1 = document.querySelector("#btn1");
@@ -56,6 +56,7 @@ homeBtn.addEventListener("click", () => {
 	$(starting_block).show();
 	$(welcome_window).show();
 	$(main_container).show();
+	$(socials).show();
 });
 
 btn1.addEventListener("click", showGameRules);
@@ -123,7 +124,7 @@ soundBtn.addEventListener("click", switchSound);
 $(volumeArea).slider({
 	animate: "slow",
 	range: "min",
-	value: 50,
+	value: 30,
 	change: setVolume
 });
 

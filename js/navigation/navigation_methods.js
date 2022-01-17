@@ -1,4 +1,4 @@
-// ' use strict ';
+' use strict ';
 
 
 let isProgressStarted = false;
@@ -13,9 +13,11 @@ function start() {
 
 function hideLoadingWindow() {
 	$(loading_block).hide();
+	$(homeBtn).show();
 	$(starting_block).show();
 	$(welcome_window).show();
 	$(menu_container).show();
+	$(socials).show();
 
 	mainMelody.play();
 	mainMelody.volume = 1;
@@ -32,6 +34,7 @@ function showFieldAndStartGame(sizeField, difficult) {
 	playSound();
 	$(settings_window).hide();
 	$(main_container).hide();
+	$(socials).hide();
 	$(field_container).show();
 
 	counter_block.style.visibility = "hidden";
@@ -45,6 +48,7 @@ function showFieldAndStartGame(sizeField, difficult) {
 function showGameRules() {
 	playSound();
 	$(welcome_window).hide();
+	$(socials).hide();
 	$(game_rules_window).show();
 	startAnimationForExampleCard();
 
@@ -57,6 +61,7 @@ function showSettings() {
 	$(welcome_window).hide();
 	$(win_window).hide();
 	$(settings_window).show();
+	$(socials).hide();
 
 	counter_block.style.visibility = "hidden";
 }
@@ -65,19 +70,24 @@ function showWinWindow(settings) {
 	$(field_container).hide();
 	$(main_container).show();
 	$(win_window).show();
+	$(socials).show();
 
 	let prevTimeString = getPrevTimeString(settings);
 	let bestTimeString = getBestTimeString(settings);
 
 	score.innerHTML = `
 	<p>Твоё время:</p><span>${(convertTime(xCounter))}</span>`;
-	if (localStorage.getItem(prevTimeString) != null){
+	if (localStorage.getItem(prevTimeString) != null) {
 		score.innerHTML += `
-		<p>Последний результат:</p><span>${convertTime(parseInt(localStorage.getItem(prevTimeString)))}</span>`;
+		<p>Предыдущий результат:</p>
+			<span>${convertTime(parseInt(localStorage.getItem(prevTimeString)))}
+		</span>`;
 	}
 	if (localStorage.getItem(bestTimeString) != null) {
 		score.innerHTML += `
-		<p>Лучший результат:</p><span>${convertTime(parseInt(localStorage.getItem(bestTimeString)))}</span>`;
+		<p>Лучший результат:</p>
+			<span>${convertTime(parseInt(localStorage.getItem(bestTimeString)))}
+		</span>`;
 	}
 
 	counter_block.style.visibility = "hidden";
@@ -153,6 +163,7 @@ function startAnimationForExampleCard() {
 	animateExampleCard();
 	setInterval(animateExampleCard, 5000);
 }
+
 function animateExampleCard() {
 	$(exampleCard1).toggleClass("flipped");
 	setTimeout(function () {

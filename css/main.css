@@ -189,6 +189,9 @@ h1.startHead {
   display: grid;
   -ms-grid-columns: (0fr)[4];
       grid-template-columns: repeat(4, 0fr);
+  -webkit-column-gap: 2px;
+          column-gap: 2px;
+  row-gap: 2px;
   background: #fff;
   border-radius: 7px;
   padding: 12px;
@@ -828,16 +831,22 @@ h1.startHead {
 }
 
 .score p {
-  padding: 5%;
+  padding: 2%;
   background: #fff;
   border-radius: 10px;
   line-height: 100%;
   text-align: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .score span {
   background: #fff;
-  padding: 5%;
+  padding: 2%;
   border-radius: 10px;
   color: #f46666;
   display: -webkit-box;
