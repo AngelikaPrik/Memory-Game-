@@ -1,50 +1,62 @@
 ' use strict ';
 
-let field_container = document.querySelector(".field-container");
-let main_container = document.querySelector(".main-container");
-let menu_container = document.querySelector(".menu-container");
-let counter_block = document.querySelector(".counter__block");
+const field_container = document.querySelector(".field-container");
+const main_container = document.querySelector(".main-container");
+const menu_container = document.querySelector(".menu-container");
+const counter_block = document.querySelector(".counter__block");
 
-let loading_block = document.querySelector(".loading__block");
-let starting_block = document.querySelector(".starting__block");
+const loading_block = document.querySelector(".loading__block");
+const starting_block = document.querySelector(".starting__block");
 
-let welcome_window = document.querySelector(".welcome__window");
-let game_rules_window = document.querySelector(".game-rules__window");
-let settings_window = document.querySelector(".settings__window");
-let win_window = document.querySelector(".win__window");
-let score = document.querySelector(".score");
+const welcome_window = document.querySelector(".welcome__window");
+const game_rules_window = document.querySelector(".game-rules__window");
+const settings_window = document.querySelector(".settings__window");
+const win_window = document.querySelector(".win__window");
+const homeBtn = document.querySelector(".home");
+const score = document.querySelector(".score");
 
 
 // navigation buttons
-let btn1 = document.querySelector("#btn1");
-let btn2 = document.querySelector("#btn2");
-let btn3 = document.querySelector("#btn3");
-let btn4 = document.querySelector("#btn4");
-let btn5 = document.querySelector("#btn5");
+const btn1 = document.querySelector("#btn1");
+const btn2 = document.querySelector("#btn2");
+const btn3 = document.querySelector("#btn3");
+const btn4 = document.querySelector("#btn4");
+const btn5 = document.querySelector("#btn5");
 
 // settings buttons
-let btnSize_4 = document.querySelector(".size-4");
-let btnSize_6 = document.querySelector(".size-6");
-let btnEasy = document.querySelector(".easy-game");
-let btnHard = document.querySelector(".hard-game");
+const btnSize_4 = document.querySelector(".size-4");
+const btnSize_6 = document.querySelector(".size-6");
+const btnEasy = document.querySelector(".easy-game");
+const btnHard = document.querySelector(".hard-game");
 
 // dropdown elements
-let menuBtn = document.querySelector(".menu");
-let menuItems = document.querySelector(".menu__items");
-let musicBtn = document.querySelector(".music");
-let soundBtn = document.querySelector(".sound");
-let volumeArea = document.querySelector(".volume");
-let backgroundList = [
-	"linear-gradient(122.11deg, #ED8D6F 3.41%, #F3D463 97.33%)",
-	"linear-gradient(252.63deg, rgba(237, 111, 111, 0.82) 2.94%, rgba(100, 114, 244, 0.54) 72.12%)",
-	"linear-gradient(184.5deg, #52A068 1.01%, rgba(166, 156, 206, 0.64) 96.35%)",
-	"linear-gradient(91.5deg, #FAE086 1.28%, #DC90E3 121.74%)",
+const menuBtn = document.querySelector(".menu");
+const menuItems = document.querySelector(".menu__items");
+const musicBtn = document.querySelector(".music");
+const soundBtn = document.querySelector(".sound");
+const volumeArea = document.querySelector(".volume");
+const backgroundBtnChange = document.querySelector(".bg");
+const backgroundList = [
+	"linear-gradient(122.11deg, #ED8D6F, #F3D463)",
+	"linear-gradient(252.63deg, rgba(237, 111, 111, 0.82), rgba(100, 114, 244, 0.54))",
+	"linear-gradient(184.5deg, #52A068, rgba(166, 156, 206, 0.64))",
+	"linear-gradient(91.5deg, #FAE086, #DC90E3)",
 
 ];
-let backgroundBtnChange = document.querySelector(".bg");
 
-// audio 
 let mainMelody = new Audio("audio/mainMelody.mp3");
+
+homeBtn.addEventListener("click", () => {
+	isStarted = false;
+	$(game_rules_window).hide();
+	$(field_container).hide();
+	$(settings_window).hide();
+	counter_block.style.visibility = "hidden";
+	$(win_window).hide();
+	$(starting_block).show();
+	$(welcome_window).show();
+	$(main_container).show();
+});
 
 btn1.addEventListener("click", showGameRules);
 
@@ -120,23 +132,29 @@ function setVolume() {
 }
 
 let needToPlay = true;
+
 function breakMelody(item) {
 	if (item.paused) {
 		item.play();
 		document.querySelector("#music").style.opacity = "1";
+		musicBtn.setAttribute("data-tooltip", "выключить музыку");
 	} else {
 		item.pause();
 		document.querySelector("#music").style.opacity = "0.3";
+		
+		musicBtn.setAttribute("data-tooltip", "включить музыку");
 	}
 	playSound();
 }
 
-function switchSound(){
+function switchSound() {
 	needToPlay = !needToPlay;
-	if(needToPlay) {
+	if (needToPlay) {
 		document.querySelector("#sound").style.opacity = "1";
+		soundBtn.setAttribute("data-tooltip", "выключить звуки интерфейса");
 	} else {
 		document.querySelector("#sound").style.opacity = "0.3";
+		soundBtn.setAttribute("data-tooltip", "включить звуки интерфейса");
 	}
 	playSound();
 }
@@ -147,6 +165,7 @@ backgroundBtnChange.addEventListener("click", function () {
 	if (index == backgroundList.length) {
 		index = 0;
 	}
-	document.querySelector("body").style.background = backgroundList[index];
+	document.querySelector("body").style.setProperty("background", backgroundList[index]);
+	document.querySelector("body").style.setProperty("background-size", "400% 400%");
 	playSound();
 });

@@ -92,7 +92,7 @@ class Game {
 		return "linear-gradient(" + angle + "deg, " + newColor1 + ", " + newColor2 + ")";
 	}
 	run() {
-		
+
 		//объект с настройками
 		let settings = this.settings;
 
@@ -112,7 +112,7 @@ class Game {
 
 		let isSuccessfulMove = 0;
 
-		let cards = document.querySelectorAll(`.card`);
+		let cards = document.querySelector(".field").querySelectorAll(".card");
 
 		//ждем 2 сек до отображения
 		setTimeout(function () {
@@ -128,10 +128,11 @@ class Game {
 				}
 				$(element).toggleClass('flipped');
 			});
+
 		}, 2000);
 		//после 5 секунд закрываем
 
-		//откладываем функцию на потом
+		//откладываем функцию на потом, здесь карточки закрываются
 		setTimeout(function () {
 			cards.forEach(element => {
 				$(element).toggleClass('flipped');
@@ -140,10 +141,14 @@ class Game {
 			isStarted = true;
 			xCounter = 0;
 			countdown();
+
+			counter_block.style.visibility = "visible";
+
 		}, 5000);
 
-
-
+		function clickCard() {
+			
+		}
 		//на клике
 		cards.forEach(card => {
 			card.addEventListener("click", function () {
@@ -154,10 +159,10 @@ class Game {
 					let cardValue = field[x][y];
 					console.log(cardValue);
 
-					if(needToPlay){
+					if (needToPlay) {
 						new Audio("audio/clickCard.mp3").play();
 					}
-					
+
 					let step = new Step(x, y, cardValue, card);
 
 					$(this).toggleClass('flipped');
@@ -173,7 +178,7 @@ class Game {
 					//условие для выигранного хода
 					if (lastStep.value == step.value &&
 						stepCounter == 2) {
-						if(needToPlay) {
+						if (needToPlay) {
 							new Audio("audio/successStep.mp3").play();
 						}
 						isSuccessfulMove = true;
@@ -197,21 +202,30 @@ class Game {
 							stepCounter = 0;
 							isWaiting = false;
 							isSuccessfulMove = false;
+
+							// подсказка
+							if (statistic.failedStepCounter >= 2) {
+								console.log("считаем неверные ходы " + statistic.failedStepCounter);
+								console.log("значение текущей карточки " + step.value);
+							}
 						}, settings.timeout);
 					}
-
-
-					//закрывающий второй ход
-					//условие проигрыша
-					if (statistic.failedStepCounter == settings.failedMoveCountToHelp) {
-						alert("YOU LOSE");
-						statistic.failedStepCounter = 0;
-						xCounter = 0;
-						isStarted = false;
-					}
+					
 					//выход из игры (победа)
 					if (statistic.successMoveCounter == (settings.rowCount * settings.rowCount) / 2) {
-						showWinWindow();
+						let prevTimeString = getPrevTimeString(settings);
+						let bestTimeString = getBestTimeString(settings);
+						
+						if (localStorage.getItem(bestTimeString) == null) {
+							localStorage.setItem(bestTimeString, xCounter);
+						}
+						if (parseInt(localStorage.getItem(bestTimeString)) > xCounter) {
+							localStorage.setItem(bestTimeString, xCounter);
+						}
+						showWinWindow(settings);
+
+						localStorage.setItem(prevTimeString, xCounter);
+
 						xCounter = 0;
 						isStarted = false;
 					}
@@ -223,7 +237,6 @@ class Game {
 
 	}
 }
-
 class Step {
 	constructor(x, y, value, card) {
 		//field
@@ -243,6 +256,7 @@ class Move {
 	constructor(firstStep, secondStep, isSuccessfulMove) {
 		this.fisrtStep = firstStep;
 		this.secondStep = secondStep;
+
 		//выигрышный ли последний ход
 		this.isSuccessfulMove = isSuccessfulMove;
 	}
@@ -278,4 +292,50 @@ function countdown() {
 		xCounter++;
 		counter = setTimeout(countdown, 1000);
 	}
+}
+
+function convertTime(xCounter) {
+	xCounter--;
+	let min = 0;
+
+	if (xCounter >= 60) {
+		min = Math.trunc(xCounter / 60);
+	}
+	
+	let sec = xCounter - min * 60;
+
+	if(min >= 1 && sec < 10) {
+		return `${min}:0${sec}`;
+	}
+	return `${min}:${sec}`; 
+	
+}
+
+function getPrevTimeString(settings){
+	let prevTimeString = "prevTime";
+	if (settings.rowCount == 4) {
+		prevTimeString += "4";
+	} else {
+		prevTimeString += "6";
+	}
+	if (settings.difficult == 1){
+		prevTimeString += "easy";
+	} else {
+		prevTimeString += "hard";
+	}
+	return prevTimeString;
+}
+function getBestTimeString(settings){
+	let bestTimeString = "bestTime";
+	if (settings.rowCount == 4) {
+		bestTimeString += "4";
+	} else {
+		bestTimeString += "6";
+	}
+	if (settings.difficult == 1){
+		bestTimeString += "easy";
+	} else {
+		bestTimeString += "hard";
+	}
+	return bestTimeString;
 }
