@@ -2,6 +2,9 @@
 
 let isStarted = false;
 
+//ожидание закрытия карточки
+let isWaiting = false;
+
 class Game {
 	constructor(settings) {
 		this.field = [];
@@ -107,9 +110,6 @@ class Game {
 		//счетчик ходов (чтобы сбрасывать после второго)
 		let stepCounter = 0;
 
-		//ожидание закрытия карточки
-		let isWaiting = false;
-
 		let isSuccessfulMove = 0;
 
 		let cards = document.querySelector(".field").querySelectorAll(".card");
@@ -147,7 +147,7 @@ class Game {
 		}, 5000);
 
 		function clickCard() {
-			
+
 		}
 		//на клике
 		cards.forEach(card => {
@@ -166,6 +166,7 @@ class Game {
 					let step = new Step(x, y, cardValue, card);
 
 					$(this).toggleClass('flipped');
+					$(this).toggleClass('opened');
 
 					//пушим ходы в историю
 					statistic.history.push(new Step(x, y, cardValue, card));
@@ -183,6 +184,9 @@ class Game {
 						}
 						isSuccessfulMove = true;
 						statistic.successMoveCounter++;
+						step.card.classList.add("opened");
+						lastStep.card.classList.add("opened");
+						$(helpBtn).hide(500);
 						statistic.failedStepCounter = 0;
 					}
 					lastStep = step;
@@ -195,27 +199,27 @@ class Game {
 						setTimeout(function () {
 							if (!isSuccessfulMove) {
 								statistic.failedStepCounter++;
-								$(step.card).toggleClass('flipped');
-								$(statistic.history[statistic.history.length - 2].card).toggleClass('flipped');
+								$(step.card).toggleClass('flipped opened');
+								$(statistic.history[statistic.history.length - 2].card).toggleClass('flipped opened');
 							}
 							lastStep = new Step();
 							stepCounter = 0;
 							isWaiting = false;
 							isSuccessfulMove = false;
-
-							// подсказка
-							if (statistic.failedStepCounter >= 2) {
-								console.log("считаем неверные ходы " + statistic.failedStepCounter);
-								console.log("значение текущей карточки " + step.value);
-							}
 						}, settings.timeout);
 					}
-					
+					// подсказка
+
+					if (statistic.failedStepCounter == 4) {
+						$(helpBtn).show(500);
+						statistic.failedStepCounter = 0;
+					}
+
 					//выход из игры (победа)
 					if (statistic.successMoveCounter == (settings.rowCount * settings.rowCount) / 2) {
 						let prevTimeString = getPrevTimeString(settings);
 						let bestTimeString = getBestTimeString(settings);
-						
+
 						if (localStorage.getItem(bestTimeString) == null) {
 							localStorage.setItem(bestTimeString, xCounter);
 						}
@@ -234,108 +238,27 @@ class Game {
 				}
 			});
 		});
-
 	}
 }
-class Step {
-	constructor(x, y, value, card) {
-		//field
-		this.x = x;
-		this.y = y;
-		this.value = value;
 
-		//html
-		this.card = card;
-		if (this.card != undefined) {
-			this.backCardElement = this.card.querySelector(".back");
+const helpBtn = document.querySelector(".help");
+
+helpBtn.addEventListener("click", function () {
+	isWaiting = true;
+	let cards = document.querySelector(".field").querySelectorAll(".card");
+	cards.forEach(element => {
+		if (!element.classList.contains("opened")) {
+			$(element).toggleClass('flipped');
 		}
+	});
 
-	}
-}
-class Move {
-	constructor(firstStep, secondStep, isSuccessfulMove) {
-		this.fisrtStep = firstStep;
-		this.secondStep = secondStep;
-
-		//выигрышный ли последний ход
-		this.isSuccessfulMove = isSuccessfulMove;
-	}
-}
-
-class Settings {
-	constructor(sizeField, difficult) {
-		this.timeout = 1000;
-		this.failedMoveCountToHelp = 10;
-		this.rowCount = sizeField;
-		this.difficult = difficult;
-	}
-}
-
-class Statistic {
-	constructor() {
-		//счетчик выигранных ходов для выхода
-		this.successMoveCounter = 0;
-		//счетчик неправильных шагов подряд
-		this.failedStepCounter = 0;
-		//история step
-		this.history = [];
-	}
-}
-
-// таймер времени
-let counter;
-let xCounter;
-
-function countdown() {
-	if (isStarted) {
-		document.querySelector(".counter").innerHTML = xCounter;
-		xCounter++;
-		counter = setTimeout(countdown, 1000);
-	}
-}
-
-function convertTime(xCounter) {
-	xCounter--;
-	let min = 0;
-
-	if (xCounter >= 60) {
-		min = Math.trunc(xCounter / 60);
-	}
-	
-	let sec = xCounter - min * 60;
-
-	if(min >= 1 && sec < 10) {
-		return `${min}:0${sec}`;
-	}
-	return `${min}:${sec}`; 
-	
-}
-
-function getPrevTimeString(settings){
-	let prevTimeString = "prevTime";
-	if (settings.rowCount == 4) {
-		prevTimeString += "4";
-	} else {
-		prevTimeString += "6";
-	}
-	if (settings.difficult == 1){
-		prevTimeString += "easy";
-	} else {
-		prevTimeString += "hard";
-	}
-	return prevTimeString;
-}
-function getBestTimeString(settings){
-	let bestTimeString = "bestTime";
-	if (settings.rowCount == 4) {
-		bestTimeString += "4";
-	} else {
-		bestTimeString += "6";
-	}
-	if (settings.difficult == 1){
-		bestTimeString += "easy";
-	} else {
-		bestTimeString += "hard";
-	}
-	return bestTimeString;
-}
+	setTimeout(function () {
+		cards.forEach(element => {
+			if (!element.classList.contains("opened")) {
+				$(element).toggleClass('flipped');
+			}
+		});
+		isWaiting = false;
+		$(helpBtn).hide(500);
+	}, 1000);
+});

@@ -9,8 +9,6 @@ function start() {
 	startProgress();
 }
 
-
-
 function hideLoadingWindow() {
 	$(loading_block).hide();
 	$(homeBtn).show();
@@ -27,22 +25,6 @@ function hideLoadingWindow() {
 		this.play();
 	}, false);
 
-}
-
-
-function showFieldAndStartGame(sizeField, difficult) {
-	playSound();
-	$(settings_window).hide();
-	$(main_container).hide();
-	$(socials).hide();
-	$(field_container).show();
-
-	counter_block.style.visibility = "hidden";
-
-	let settings = new Settings(sizeField, difficult);
-	let game = new Game(settings);
-	game.init();
-	game.run();
 }
 
 function showGameRules() {
@@ -65,6 +47,23 @@ function showSettings() {
 
 	counter_block.style.visibility = "hidden";
 }
+
+function showFieldAndStartGame(sizeField, difficult) {
+	playSound();
+	$(settings_window).hide();
+	$(main_container).hide();
+	$(socials).hide();
+	$(field_container).show();
+
+	counter_block.style.visibility = "hidden";
+
+	let settings = new Settings(sizeField, difficult);
+	let game = new Game(settings);
+	game.init();
+	game.run();
+}
+
+
 
 function showWinWindow(settings) {
 	$(field_container).hide();

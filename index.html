@@ -64,7 +64,7 @@
 						Перед тобой выкладываются карточки в любом порядке рубашкой вверх. За один ход ты можешь открыть две
 						карточки. Если нашёл пару - они остаются открытыми. Чем быстрее найдешь все пары, тем скорее
 						выиграешь!
-						
+
 						<div class="game-example">
 							<img src="img/example_game/example_card_1.svg" alt="">
 							<img src="img/example_game/example_card_2.svg" alt="">
@@ -98,7 +98,7 @@
 							<img src="img/example_game/example_card_16.svg" alt="">
 						</div>
 					</div>
-					
+
 					<div class="window__btns">
 						<a id="btn3" class="window__btn">Поехали!</a>
 
@@ -162,12 +162,22 @@
 				</li>
 			</ul>
 		</div>
-		<div class="counter__block">
-			<p class="counter">0</p>
+		<div class="right-side">
+			<div class="counter__block">
+				<p class="counter">0</p>
+			</div>
+			<div class="help" style="display: none">
+				<img src="img/icons/help.svg" alt="">
+			</div>
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+	<script src="js/game/step.js"></script>
+	<script src="js/game/move.js"></script>
+	<script src="js/game/settings.js"></script>
+	<script src="js/game/statisctic.js"></script>
+	<script src="js/game/timer_n_winCount.js"></script>
 	<script src="js/game/game.js"></script>
 	<script src="js/navigation/navigation_methods.js"></script>
 	<script src="js/navigation/navigation.js"></script>
