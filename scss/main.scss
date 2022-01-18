@@ -99,7 +99,8 @@ h1 {
 // game example start
 .game-example {
 	position: absolute;
-	right: 15%;
+	right: -10%;
+	bottom: -50%;
 
 	display: grid;
 	grid-template-columns: repeat(4, 0fr);
@@ -350,6 +351,7 @@ h1 {
 		line-height: 135%;
 		font-weight: 200;
 
+		position: relative;
 	}
 
 	.window__btns {

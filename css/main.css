@@ -184,7 +184,8 @@ h1.startHead {
 
 .game-example {
   position: absolute;
-  right: 15%;
+  right: -10%;
+  bottom: -50%;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (0fr)[4];
@@ -467,6 +468,7 @@ h1.startHead {
   font-size: 24px;
   line-height: 135%;
   font-weight: 200;
+  position: relative;
 }
 
 .game-rules__window .window__btns {

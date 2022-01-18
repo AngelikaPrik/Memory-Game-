@@ -260,5 +260,5 @@ helpBtn.addEventListener("click", function () {
 		});
 		isWaiting = false;
 		$(helpBtn).hide(500);
-	}, 1000);
+	}, 2000);
 });

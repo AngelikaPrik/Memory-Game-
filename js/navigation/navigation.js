@@ -124,7 +124,7 @@ soundBtn.addEventListener("click", switchSound);
 $(volumeArea).slider({
 	animate: "slow",
 	range: "min",
-	value: 30,
+	value: 100,
 	change: setVolume
 });
 
