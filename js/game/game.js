@@ -211,6 +211,7 @@ class Game {
 					// подсказка
 
 					if (statistic.failedStepCounter == 4) {
+						new Audio("audio/helpSound.mp3").play();
 						$(helpBtn).show(500);
 						statistic.failedStepCounter = 0;
 					}
@@ -251,6 +252,7 @@ helpBtn.addEventListener("click", function () {
 			$(element).toggleClass('flipped');
 		}
 	});
+
 
 	setTimeout(function () {
 		cards.forEach(element => {
