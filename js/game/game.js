@@ -23,7 +23,7 @@ class Game {
 
 		$(function () {
 			$(fieldBlock).resizable({
-				maxHeight: 700,
+				maxHeight: 600,
 				maxWidth: 600,
 				minWidth: 430,
 				minHeight: 500,

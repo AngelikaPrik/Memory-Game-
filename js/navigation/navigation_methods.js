@@ -14,11 +14,11 @@ function hideLoadingWindow() {
 	$(homeBtn).show();
 	$(starting_block).show();
 	$(welcome_window).show();
-	$(menu_container).show();
-	$(socials).show();
+	$(menu_burger).show();
+	$(socials).show(500);
 
 	mainMelody.play();
-	mainMelody.volume = 1;
+	mainMelody.volume = 0.2;
 
 	mainMelody.addEventListener("ended", function () {
 		this.currentTime = 0;
@@ -30,7 +30,7 @@ function hideLoadingWindow() {
 function showGameRules() {
 	playSound();
 	$(welcome_window).hide();
-	$(socials).hide();
+	$(socials).hide(500);
 	$(game_rules_window).show();
 	startAnimationForExampleCard();
 
@@ -43,7 +43,7 @@ function showSettings() {
 	$(welcome_window).hide();
 	$(win_window).hide();
 	$(settings_window).show();
-	$(socials).hide();
+	$(socials).hide(500);
 
 	counter_block.style.visibility = "hidden";
 }
@@ -52,7 +52,7 @@ function showFieldAndStartGame(sizeField, difficult) {
 	playSound();
 	$(settings_window).hide();
 	$(main_container).hide();
-	$(socials).hide();
+	$(socials).hide(500);
 	$(field_container).show();
 
 	counter_block.style.visibility = "hidden";
@@ -69,7 +69,7 @@ function showWinWindow(settings) {
 	$(field_container).hide();
 	$(main_container).show();
 	$(win_window).show();
-	$(socials).show();
+	$(socials).show(500);
 
 	let prevTimeString = getPrevTimeString(settings);
 	let bestTimeString = getBestTimeString(settings);

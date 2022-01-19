@@ -2,7 +2,7 @@
 
 const field_container = document.querySelector(".field-container");
 const main_container = document.querySelector(".main-container");
-const menu_container = document.querySelector(".menu-container");
+const menu_burger = document.querySelector(".menu-burger");
 const counter_block = document.querySelector(".counter__block");
 
 const loading_block = document.querySelector(".loading__block");
@@ -52,11 +52,12 @@ homeBtn.addEventListener("click", () => {
 	$(field_container).hide();
 	$(settings_window).hide();
 	counter_block.style.visibility = "hidden";
+	$(helpBtn).hide(500);
 	$(win_window).hide();
 	$(starting_block).show();
 	$(welcome_window).show();
 	$(main_container).show();
-	$(socials).show();
+	$(socials).show(500);
 });
 
 btn1.addEventListener("click", showGameRules);

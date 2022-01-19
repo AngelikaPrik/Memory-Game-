@@ -108,7 +108,6 @@ body {
   display: flex;
   max-width: 1000px;
   margin: 0 auto;
-  padding-top: 70px;
 }
 
 .start_menu {
@@ -169,7 +168,7 @@ h1.startHead {
 }
 
 #myProgress {
-  margin-top: 20px;
+  margin-top: 30px;
   width: 100%;
   background-color: #fff;
   border-radius: 40px;
@@ -202,6 +201,10 @@ h1.startHead {
   display: block;
 }
 
+.game-example div {
+  cursor: default;
+}
+
 .right-side {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -223,7 +226,7 @@ h1.startHead {
   height: 60px;
   background-color: #fff;
   border-radius: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -268,6 +271,14 @@ h1.startHead {
 .help:hover img {
   -webkit-transform: scale(1.3);
           transform: scale(1.3);
+}
+
+.left-side {
+  padding-top: 80px;
+}
+
+.right-side {
+  padding-top: 80px;
 }
 
 .menu {
@@ -373,7 +384,7 @@ h1.startHead {
       -ms-flex-direction: column;
           flex-direction: column;
   position: absolute;
-  top: 110px;
+  top: 19%;
 }
 
 .menu__items button {
@@ -649,7 +660,7 @@ h1.startHead {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100%;
+  height: 100vh;
 }
 
 .field-container {
@@ -663,10 +674,7 @@ h1.startHead {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100%;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  height: 100vh;
 }
 
 .field {
@@ -775,8 +783,7 @@ h1.startHead {
 
 .socials {
   position: absolute;
-  bottom: 80px;
-  right: 10%;
+  top: 90%;
 }
 
 .socials ul {
@@ -832,7 +839,7 @@ h1.startHead {
   width: 60px;
   height: 36px;
   position: absolute;
-  bottom: 80px;
+  top: 90%;
   -webkit-transition: background 0.2s;
   transition: background 0.2s;
   cursor: pointer;
@@ -915,7 +922,10 @@ h1.startHead {
 
 @font-face {
   font-family: "Impact";
-  font-family: "Days";
   src: url(/fonts/impact_font/impact.ttf);
+}
+
+@font-face {
+  font-family: "Days";
   src: url(/fonts/days_font/Days.ttf);
 }
