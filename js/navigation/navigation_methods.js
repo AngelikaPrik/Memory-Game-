@@ -11,16 +11,13 @@ function start() {
 
 function hideLoadingWindow() {
 	$(loading_block).hide();
+	$(rightSide).show();
+	$(socials).show();
 	$(homeBtn).show();
 	$(starting_block).show();
 	$(welcome_window).show();
 	$(menu_burger).show();
-	$(socials).show(500);
-
-	mainMelody.play();
-	mainMelody.muted = false;
-	$(musicBtn).trigger('click');
-	mainMelody.volume = 0.2;
+	mainMelody.volume = 1;
 
 	mainMelody.addEventListener("ended", function () {
 		this.currentTime = 0;
@@ -28,6 +25,17 @@ function hideLoadingWindow() {
 	}, false);
 
 }
+
+
+let isFirstClick = true;
+$(document).click(function () {
+	if (isFirstClick) {
+		mainMelody.play();
+		document.querySelector("#music").style.opacity = "1";
+		musicBtn.setAttribute("data-tooltip", "выключить музыку");
+		isFirstClick = false;
+	}
+})
 
 function showGameRules() {
 	playSound();

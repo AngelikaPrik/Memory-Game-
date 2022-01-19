@@ -227,15 +227,16 @@ class Game {
 						if (parseInt(localStorage.getItem(bestTimeString)) > xCounter) {
 							localStorage.setItem(bestTimeString, xCounter);
 						}
-						showWinWindow(settings);
 
-						localStorage.setItem(prevTimeString, xCounter);
+						let time = xCounter;
+						setTimeout(function () {
+							showWinWindow(settings);
+							localStorage.setItem(prevTimeString, time);
 
-						xCounter = 0;
-						isStarted = false;
+							xCounter = 0;
+							isStarted = false;
+						}, 1000);
 					}
-				} else {
-					console.log("нельзя");
 				}
 			});
 		});
