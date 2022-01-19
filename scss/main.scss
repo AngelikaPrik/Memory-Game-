@@ -220,7 +220,7 @@ h1 {
 	&:hover {
 		cursor: pointer;
 		background-color: rgba(255, 255, 255, 1);
-		transition: background-color 0.5s ease;
+		transition: background-color 0.2s ease;
 
 		span,
 		&::before,
@@ -232,7 +232,7 @@ h1 {
 	&.active {
 		width: 60px;
 		height: 30px;
-		transition: all 0.5s ease;
+		transition: all 0.2s ease;
 
 		background-color: rgba(255, 255, 255, 1);
 
@@ -266,7 +266,7 @@ h1 {
 	visibility: hidden;
 	flex-direction: column;
 	position: absolute;
-	top: 19%;
+	top: 130px;
 
 	button {
 		background-color: #fff;
@@ -692,7 +692,7 @@ h1 {
 
 	position: absolute;
 	top: 90%;
-	transition: background 0.2s;
+	transition: background 0.1s;
 
 	cursor: pointer;
 

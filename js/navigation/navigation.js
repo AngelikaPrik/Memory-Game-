@@ -39,7 +39,7 @@ const backgroundBtnChange = document.querySelector(".bg");
 const backgroundList = [
 	"linear-gradient(122.11deg, #ED8D6F, #F3D463)",
 	"linear-gradient(252.63deg, rgba(237, 111, 111, 0.82), rgba(100, 114, 244, 0.54))",
-	"linear-gradient(184.5deg, #52A068, rgba(166, 156, 206, 0.64))",
+	"linear-gradient(110.47deg, #83FEA6 0.76%, #7E6BCA 100%)",
 	"linear-gradient(91.5deg, #FAE086, #DC90E3)",
 
 ];
@@ -121,7 +121,9 @@ menuBtn.addEventListener("click", function () {
 
 musicBtn.addEventListener("click", () => breakMelody(mainMelody));
 soundBtn.addEventListener("click", switchSound);
+
 // ползунок громкости
+
 $(volumeArea).slider({
 	animate: "slow",
 	range: "min",
@@ -131,6 +133,7 @@ $(volumeArea).slider({
 
 function setVolume() {
 	mainMelody.volume = $(volumeArea).slider("value") / 100;
+	document.querySelector(".ui-slider-handle").setAttribute("data-tooltip", $(volumeArea).slider("value") + "%");
 }
 
 let needToPlay = true;

@@ -18,6 +18,8 @@ function hideLoadingWindow() {
 	$(socials).show(500);
 
 	mainMelody.play();
+	mainMelody.muted = false;
+	$(musicBtn).trigger('click');
 	mainMelody.volume = 0.2;
 
 	mainMelody.addEventListener("ended", function () {

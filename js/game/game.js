@@ -246,6 +246,7 @@ const helpBtn = document.querySelector(".help");
 
 helpBtn.addEventListener("click", function () {
 	isWaiting = true;
+	$(helpBtn).hide(500);
 	let cards = document.querySelector(".field").querySelectorAll(".card");
 	cards.forEach(element => {
 		if (!element.classList.contains("opened")) {
@@ -261,6 +262,5 @@ helpBtn.addEventListener("click", function () {
 			}
 		});
 		isWaiting = false;
-		$(helpBtn).hide(500);
 	}, 2000);
 });

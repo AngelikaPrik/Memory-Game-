@@ -329,8 +329,8 @@ h1.startHead {
 .menu:hover {
   cursor: pointer;
   background-color: white;
-  -webkit-transition: background-color 0.5s ease;
-  transition: background-color 0.5s ease;
+  -webkit-transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .menu:hover span, .menu:hover::before, .menu:hover::after {
@@ -340,8 +340,8 @@ h1.startHead {
 .menu.active {
   width: 60px;
   height: 30px;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
   background-color: white;
 }
 
@@ -384,7 +384,7 @@ h1.startHead {
       -ms-flex-direction: column;
           flex-direction: column;
   position: absolute;
-  top: 19%;
+  top: 130px;
 }
 
 .menu__items button {
@@ -840,8 +840,8 @@ h1.startHead {
   height: 36px;
   position: absolute;
   top: 90%;
-  -webkit-transition: background 0.2s;
-  transition: background 0.2s;
+  -webkit-transition: background 0.1s;
+  transition: background 0.1s;
   cursor: pointer;
 }
 
