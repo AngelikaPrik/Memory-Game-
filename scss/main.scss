@@ -1,8 +1,8 @@
 @import "_nullstyle";
 
 body {
-	font-family: 'Days';
-	font-weight: 200;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
 	text-transform: uppercase;
 
 	max-height: 100%;
@@ -360,7 +360,7 @@ h1 {
 		text-align: center;
 		font-size: 24px;
 		line-height: 135%;
-		font-weight: 200;
+		font-weight: 600;
 
 		position: relative;
 	}
@@ -422,7 +422,7 @@ h1 {
 		border-radius: 10px;
 		font-style: normal;
 		font-size: 36px;
-		font-weight: 100;
+		font-weight: 700;
 		line-height: 44px;
 
 		padding: 1%;
@@ -758,12 +758,3 @@ h1 {
 }
 
 // win window end
-
-@font-face {
-	font-family: "Impact";
-	src: url(/fonts/impact_font/impact.ttf);
-}
-@font-face {
-	font-family: "Days";
-	src: url(/fonts/days_font/Days.ttf);
-}
