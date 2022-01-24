@@ -184,7 +184,7 @@ h1.startHead {
 .game-example {
   position: absolute;
   right: -10%;
-  bottom: -50%;
+  bottom: -63%;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (0fr)[4];
