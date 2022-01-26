@@ -1,7 +1,7 @@
 # Memory-Game-
 Graduation project at Orion education
 
-![exampleG](https://user-images.githubusercontent.com/89914003/151240379-686b3efd-9750-4308-bfd6-c4f231e248c7.svg)
+![exampleG](https://user-images.githubusercontent.com/89914003/151241104-576294d0-9600-4723-80d4-57edd17b327f.svg)
 
 </br>
 
