@@ -1,4 +1,8 @@
 ' use strict ';
+// resizeble после кнопки домой не работает
+
+
+// выделить 3 сложных момента
 
 let isStarted = false;
 
@@ -129,6 +133,9 @@ class Game {
 				$(element).toggleClass('flipped');
 			});
 
+			if (needToPlay) {
+				new Audio("audio/clickCard.mp3").play();
+			}
 		}, 2000);
 		//после 5 секунд закрываем
 
@@ -144,11 +151,11 @@ class Game {
 
 			counter_block.style.visibility = "visible";
 
+			if (needToPlay) {
+				new Audio("audio/clickCard.mp3").play();
+			}
 		}, 5000);
 
-		function clickCard() {
-
-		}
 		//на клике
 		cards.forEach(card => {
 			card.addEventListener("click", function () {
@@ -255,7 +262,9 @@ helpBtn.addEventListener("click", function () {
 		}
 	});
 
-
+	if (needToPlay) {
+		new Audio("audio/clickCard.mp3").play();
+	}
 	setTimeout(function () {
 		cards.forEach(element => {
 			if (!element.classList.contains("opened")) {
@@ -263,5 +272,10 @@ helpBtn.addEventListener("click", function () {
 			}
 		});
 		isWaiting = false;
+		if (needToPlay) {
+			new Audio("audio/clickCard.mp3").play();
+		}
 	}, 2000);
 });
+
+

@@ -10,9 +10,10 @@ const starting_block = document.querySelector(".starting__block");
 
 const welcome_window = document.querySelector(".welcome__window");
 const game_rules_window = document.querySelector(".game-rules__window");
+const game_example = game_rules_window.querySelector(".game-example");
 const settings_window = document.querySelector(".settings__window");
 const win_window = document.querySelector(".win__window");
-const homeBtn = document.querySelector(".home");
+const homeBtn = document.querySelector(".navBtn");
 const score = document.querySelector(".score");
 const socials = document.querySelector(".socials");
 
@@ -127,6 +128,11 @@ $(volumeArea).slider({
 
 function setVolume() {
 	mainMelody.volume = $(volumeArea).slider("value") / 100;
+	if (mainMelody.paused) {
+		mainMelody.play();
+		document.querySelector("#music").style.opacity = "1";
+		musicBtn.setAttribute("data-tooltip", "выключить музыку");
+	}
 }
 
 let needToPlay = true;
@@ -139,7 +145,7 @@ function breakMelody(item) {
 	} else {
 		item.pause();
 		document.querySelector("#music").style.opacity = "0.3";
-		
+
 		musicBtn.setAttribute("data-tooltip", "включить музыку");
 	}
 	playSound();

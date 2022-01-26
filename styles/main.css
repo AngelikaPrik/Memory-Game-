@@ -406,14 +406,14 @@ h1.startHead {
           justify-content: center;
 }
 
-.menu__items button svg {
+.menu__items button img {
   -webkit-transition: -webkit-transform 0.3s ease;
   transition: -webkit-transform 0.3s ease;
   transition: transform 0.3s ease;
   transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 
-.menu__items button:hover svg {
+.menu__items button:hover img {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
@@ -839,7 +839,7 @@ h1.startHead {
   fill: #ED8D6F;
 }
 
-.home {
+.navBtn {
   background: rgba(250, 250, 250, 0.4);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -860,16 +860,16 @@ h1.startHead {
   cursor: pointer;
 }
 
-.home svg {
+.navBtn svg {
   display: block;
   opacity: 0.3;
 }
 
-.home:hover {
+.navBtn:hover {
   background: #fafafa;
 }
 
-.home:hover svg {
+.navBtn:hover svg {
   opacity: 1;
 }
 

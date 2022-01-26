@@ -128,14 +128,14 @@ function startProgress() {
 	}
 }
 
-// tooltips
+// подсказки
 
 let tooltipElem;
 
 document.addEventListener("mouseover", (event) => {
 	let target = event.target;
 
-	// если у нас есть подсказка...
+	// если у нас есть подсказка
 	let tooltipHtml = target.dataset.tooltip;
 	if (!tooltipHtml) return;
 
@@ -146,7 +146,7 @@ document.addEventListener("mouseover", (event) => {
 	tooltipElem.innerHTML = tooltipHtml;
 	document.body.append(tooltipElem);
 
-	// спозиционируем его сверху от аннотируемого элемента (top-center)
+	// сверху от аннотируемого элемента
 	let coords = target.getBoundingClientRect();
 
 	let left = coords.left + (target.offsetWidth - tooltipElem.offsetWidth) / 2;
@@ -168,9 +168,14 @@ document.addEventListener("mouseout", () => {
 let exampleCard1 = document.querySelector("#example_card_1");
 let exampleCard2 = document.querySelector("#example_card_2");
 
+let animationNotStarted = true;
+
 function startAnimationForExampleCard() {
-	animateExampleCard();
-	setInterval(animateExampleCard, 5000);
+	if(animationNotStarted) {
+		animateExampleCard();
+		setInterval(animateExampleCard, 5000);
+		animationNotStarted = false;
+	}
 }
 
 function animateExampleCard() {

@@ -284,11 +284,11 @@ h1 {
 		align-items: center;
 		justify-content: center;
 
-		svg {
+		img {
 			transition: transform 0.3s ease;
 		}
 
-		&:hover svg {
+		&:hover img {
 			transform: scale(1.1);
 		}
 	}
@@ -559,7 +559,6 @@ h1 {
 	padding: 20px;
 }
 
-
 .cardContainer {
 	-webkit-transition: all .3s ease;
 	-moz-transition: all .3s ease;
@@ -691,7 +690,7 @@ h1 {
 	}
 }
 
-.home {
+.navBtn {
 	background: rgba(250, 250, 250, 0.4);
 	display: flex;
 	justify-content: center;
