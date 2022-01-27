@@ -1,9 +1,6 @@
 ' use strict ';
-// resizeble после кнопки домой не работает
 
-
-// выделить 3 сложных момента
-
+// для счетчика
 let isStarted = false;
 
 //ожидание закрытия карточки
@@ -22,7 +19,6 @@ class Game {
 
 		let rowCount = this.settings.rowCount;
 
-		let fieldBlock = document.querySelector(".field");
 		fieldBlock.style.gridTemplateColumns = `repeat(${rowCount}, 1fr)`;
 
 		$(function () {
@@ -136,7 +132,7 @@ class Game {
 			if (needToPlay) {
 				new Audio("audio/clickCard.mp3").play();
 			}
-		}, 2000);
+		}, 1000);
 		//после 5 секунд закрываем
 
 		//откладываем функцию на потом, здесь карточки закрываются
@@ -154,7 +150,7 @@ class Game {
 			if (needToPlay) {
 				new Audio("audio/clickCard.mp3").play();
 			}
-		}, 5000);
+		}, 3000);
 		
 
 		//на клике
@@ -250,33 +246,3 @@ class Game {
 		});
 	}
 }
-
-const helpBtn = document.querySelector(".help");
-
-helpBtn.addEventListener("click", function () {
-	isWaiting = true;
-	$(helpBtn).hide(500);
-	let cards = document.querySelector(".field").querySelectorAll(".card");
-	cards.forEach(element => {
-		if (!element.classList.contains("opened")) {
-			$(element).toggleClass('flipped');
-		}
-	});
-
-	if (needToPlay) {
-		new Audio("audio/clickCard.mp3").play();
-	}
-	setTimeout(function () {
-		cards.forEach(element => {
-			if (!element.classList.contains("opened")) {
-				$(element).toggleClass('flipped');
-			}
-		});
-		isWaiting = false;
-		if (needToPlay) {
-			new Audio("audio/clickCard.mp3").play();
-		}
-	}, 2000);
-});
-
-

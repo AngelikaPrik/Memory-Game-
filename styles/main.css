@@ -622,9 +622,14 @@ h1.startHead {
 }
 
 .settings__values div:hover span {
-  background: none;
   color: #fff;
   -webkit-text-fill-color: white;
+}
+
+.settings__values span {
+  background: linear-gradient(45deg, #ee906f, #f4d265);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .size__block div {

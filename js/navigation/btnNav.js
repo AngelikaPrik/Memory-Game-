@@ -26,9 +26,6 @@ btn4.addEventListener("click", function () {
 
 btn5.addEventListener("click", showSettings);
 
-let setting_size = 4;
-let setting_difficult = 1;
-
 btnSize_4.addEventListener("click", function () {
 	setting_size = 4;
 	if (!$(this).hasClass("selected")) {

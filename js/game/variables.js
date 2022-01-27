@@ -1,7 +1,7 @@
 ' use strict ';
 
-
 const field_container = document.querySelector(".field-container");
+const fieldBlock = document.querySelector(".field");
 const main_container = document.querySelector(".main-container");
 const menu_burger = document.querySelector(".menu-burger");
 const counter_block = document.querySelector(".counter__block");
@@ -39,6 +39,7 @@ const soundBtn = document.querySelector(".sound");
 const volumeArea = document.querySelector(".volume");
 const backgroundBtnChange = document.querySelector(".bg");
 const rightSide = document.querySelector(".right-side");
+const helpBtn = document.querySelector(".help");
 const backgroundList = [
 	"linear-gradient(122.11deg, #ED8D6F, #F3D463)",
 	"linear-gradient(252.63deg, rgba(237, 111, 111, 0.82), rgba(100, 114, 244, 0.54))",

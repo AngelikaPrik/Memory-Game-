@@ -56,7 +56,7 @@ function showSettings() {
 	counter_block.style.visibility = "hidden";
 }
 
-function showFieldAndStartGame(sizeField, difficult) {
+function showFieldAndStartGame(sizeField = 4, difficult = 1) {
 	playSound();
 	$(settings_window).hide();
 	$(main_container).hide();
@@ -252,3 +252,31 @@ function animateExampleCard() {
 		$(exampleCard2).toggleClass("flipped");
 	}, 3000);
 }
+
+// помощь-подсказка
+
+helpBtn.addEventListener("click", function () {
+	isWaiting = true;
+	$(helpBtn).hide(500);
+	let cards = document.querySelector(".field").querySelectorAll(".card");
+	cards.forEach(element => {
+		if (!element.classList.contains("opened")) {
+			$(element).toggleClass('flipped');
+		}
+	});
+
+	if (needToPlay) {
+		new Audio("audio/clickCard.mp3").play();
+	}
+	setTimeout(function () {
+		cards.forEach(element => {
+			if (!element.classList.contains("opened")) {
+				$(element).toggleClass('flipped');
+			}
+		});
+		isWaiting = false;
+		if (needToPlay) {
+			new Audio("audio/clickCard.mp3").play();
+		}
+	}, 2000);
+});

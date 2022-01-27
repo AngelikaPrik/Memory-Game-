@@ -481,10 +481,15 @@ h1 {
 		background: #ee926e;
 
 		span {
-			background: none;
 			color: #fff;
 			-webkit-text-fill-color: white;
 		}
+	}
+
+	span {
+		background: linear-gradient(45deg, rgba(238, 144, 111, 1), rgba(244, 210, 101, 1));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
 }
 
@@ -640,9 +645,11 @@ h1 {
 .ui-widget-content {
 	border: none !important;
 }
+
 .ui-icon {
 	background-image: url(/img/icons/resize.svg) !important;
 }
+
 .ui-icon-gripsmall-diagonal-se {
 	background-position: 0% !important;
 }
