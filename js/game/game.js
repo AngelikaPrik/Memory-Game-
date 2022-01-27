@@ -189,7 +189,7 @@ class Game {
 						isSuccessfulMove = true;
 						statistic.successMoveCounter++;
 						step.card.classList.add("opened");
-						lastStep.card.classList.add("opened");
+						lastStep.card.classList.add("opened");						
 						$(helpBtn).hide(500);
 						statistic.failedStepCounter = 0;
 					}
@@ -197,9 +197,6 @@ class Game {
 
 					if (stepCounter == 2) {
 						isWaiting = true;
-						if (!isSuccessfulMove) {
-
-						}
 						setTimeout(function () {
 							if (!isSuccessfulMove) {
 								statistic.failedStepCounter++;

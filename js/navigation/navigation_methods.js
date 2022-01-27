@@ -22,7 +22,6 @@ function hideLoadingWindow() {
 		this.currentTime = 0;
 		this.play();
 	}, false);
-
 }
 
 let isFirstClick = true;
@@ -56,7 +55,7 @@ function showSettings() {
 	counter_block.style.visibility = "hidden";
 }
 
-function showFieldAndStartGame(sizeField = 4, difficult = 1) {
+function showFieldAndStartGame(sizeField, difficult) {
 	playSound();
 	$(settings_window).hide();
 	$(main_container).hide();
@@ -190,7 +189,7 @@ backgroundBtnChange.addEventListener("click", function () {
 	playSound();
 });
 
-// подсказки
+// tooltips
 
 let tooltipElem;
 
@@ -268,6 +267,7 @@ helpBtn.addEventListener("click", function () {
 	if (needToPlay) {
 		new Audio("audio/clickCard.mp3").play();
 	}
+	
 	setTimeout(function () {
 		cards.forEach(element => {
 			if (!element.classList.contains("opened")) {

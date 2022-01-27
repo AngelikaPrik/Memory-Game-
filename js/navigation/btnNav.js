@@ -24,7 +24,11 @@ btn4.addEventListener("click", function () {
 	showFieldAndStartGame(setting_size, setting_difficult);
 });
 
+let setting_size = 4, 
+	setting_difficult = 1;
+
 btn5.addEventListener("click", showSettings);
+
 
 btnSize_4.addEventListener("click", function () {
 	setting_size = 4;
