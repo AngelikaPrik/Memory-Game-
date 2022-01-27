@@ -1,6 +1,5 @@
 ' use strict ';
 
-
 let isProgressStarted = false;
 
 start();
@@ -26,7 +25,6 @@ function hideLoadingWindow() {
 
 }
 
-
 let isFirstClick = true;
 $(document).click(function () {
 	if (isFirstClick) {
@@ -35,7 +33,7 @@ $(document).click(function () {
 		musicBtn.setAttribute("data-tooltip", "выключить музыку");
 		isFirstClick = false;
 	}
-})
+});
 
 function showGameRules() {
 	playSound();
@@ -73,7 +71,7 @@ function showFieldAndStartGame(sizeField, difficult) {
 	game.run();
 }
 
-
+// экран с результатами игры
 
 function showWinWindow(settings) {
 	$(field_container).hide();
@@ -108,6 +106,8 @@ function playSound() {
 	}
 }
 
+// функция loading bar
+
 function startProgress() {
 	if (!isProgressStarted) {
 		isProgressStarted = true;
@@ -127,6 +127,68 @@ function startProgress() {
 		let id = setInterval(frame, 20);
 	}
 }
+
+// ползунок громкости
+
+$(volumeArea).slider({
+	animate: "slow",
+	range: "min",
+	value: 100,
+	change: setVolume
+});
+
+function setVolume() {
+	mainMelody.volume = $(volumeArea).slider("value") / 100;
+	if (mainMelody.paused) {
+		mainMelody.play();
+		document.querySelector("#music").style.opacity = "1";
+		musicBtn.setAttribute("data-tooltip", "выключить музыку");
+	}
+}
+
+// вкл/выкл основной мелодии
+let needToPlay = true;
+
+function breakMelody(item) {
+	if (item.paused) {
+		item.play();
+		document.querySelector("#music").style.opacity = "1";
+		musicBtn.setAttribute("data-tooltip", "выключить музыку");
+	} else {
+		item.pause();
+		document.querySelector("#music").style.opacity = "0.3";
+
+		musicBtn.setAttribute("data-tooltip", "включить музыку");
+	}
+	playSound();
+}
+
+// вкл/выкл звуков интерфейса
+
+function switchSound() {
+	needToPlay = !needToPlay;
+	if (needToPlay) {
+		document.querySelector("#sound").style.opacity = "1";
+		soundBtn.setAttribute("data-tooltip", "выключить звуки интерфейса");
+	} else {
+		document.querySelector("#sound").style.opacity = "0.3";
+		soundBtn.setAttribute("data-tooltip", "включить звуки интерфейса");
+	}
+	playSound();
+}
+
+// смена фона
+let index = 0;
+
+backgroundBtnChange.addEventListener("click", function () {
+	index++;
+	if (index == backgroundList.length) {
+		index = 0;
+	}
+	document.querySelector("body").style.setProperty("background", backgroundList[index]);
+	document.querySelector("body").style.setProperty("background-size", "400% 400%");
+	playSound();
+});
 
 // подсказки
 
@@ -164,6 +226,8 @@ document.addEventListener("mouseout", () => {
 		tooltipElem = null;
 	}
 });
+
+// анимация карточек в примере игры
 
 let exampleCard1 = document.querySelector("#example_card_1");
 let exampleCard2 = document.querySelector("#example_card_2");

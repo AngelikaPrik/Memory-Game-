@@ -782,8 +782,7 @@ h1.startHead {
   border: none !important;
 }
 
-.ui-icon .ui-icon,
-.ui-widget-content .ui-icon {
+.ui-icon {
   background-image: url(/img/icons/resize.svg) !important;
 }
 

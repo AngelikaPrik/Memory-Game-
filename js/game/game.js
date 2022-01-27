@@ -148,13 +148,14 @@ class Game {
 			isStarted = true;
 			xCounter = 0;
 			countdown();
-
+			
 			counter_block.style.visibility = "visible";
 
 			if (needToPlay) {
 				new Audio("audio/clickCard.mp3").play();
 			}
 		}, 5000);
+		
 
 		//на клике
 		cards.forEach(card => {
