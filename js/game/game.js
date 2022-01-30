@@ -161,7 +161,7 @@ class Game {
 					let x = card.getAttribute("x");
 					let y = card.getAttribute("y");
 					let cardValue = field[x][y];
-					console.log(cardValue);
+					// console.log(cardValue);
 
 					if (needToPlay) {
 						new Audio("audio/clickCard.mp3").play();
@@ -176,7 +176,7 @@ class Game {
 					statistic.history.push(new Step(x, y, cardValue, card));
 					console.log(statistic.history);
 
-					console.log("lastStep:" + JSON.stringify(lastStep) + "  currentStep:" + JSON.stringify(step));
+					// console.log("lastStep:" + JSON.stringify(lastStep) + "  currentStep:" + JSON.stringify(step));
 
 					stepCounter++;
 
