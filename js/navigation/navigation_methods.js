@@ -228,9 +228,6 @@ document.addEventListener("mouseout", () => {
 
 // анимация карточек в примере игры
 
-let exampleCard1 = document.querySelector("#example_card_1");
-let exampleCard2 = document.querySelector("#example_card_2");
-
 let animationNotStarted = true;
 
 function startAnimationForExampleCard() {
@@ -242,13 +239,13 @@ function startAnimationForExampleCard() {
 }
 
 function animateExampleCard() {
-	$(exampleCard1).toggleClass("flipped");
+	$("#example_card_1").toggleClass("flipped");
 	setTimeout(function () {
-		$(exampleCard2).toggleClass("flipped");
+		$("#example_card_2").toggleClass("flipped");
 	}, 1000);
 	setTimeout(function () {
-		$(exampleCard1).toggleClass("flipped");
-		$(exampleCard2).toggleClass("flipped");
+		$("#example_card_1").toggleClass("flipped");
+		$("#example_card_2").toggleClass("flipped");
 	}, 3000);
 }
 

@@ -38,13 +38,14 @@ const musicBtn = document.querySelector(".music");
 const soundBtn = document.querySelector(".sound");
 const volumeArea = document.querySelector(".volume");
 const backgroundBtnChange = document.querySelector(".bg");
-const rightSide = document.querySelector(".right-side");
-const helpBtn = document.querySelector(".help");
 const backgroundList = [
 	"linear-gradient(122.11deg, #ED8D6F, #F3D463)",
 	"linear-gradient(252.63deg, rgba(237, 111, 111, 0.82), rgba(100, 114, 244, 0.54))",
 	"linear-gradient(110.47deg, #83FED2 0.76%, #7E6BCA 100%)",
 	"linear-gradient(91.5deg, #FAE086, #DC90E3)"
 ];
+
+const rightSide = document.querySelector(".right-side");
+const helpBtn = document.querySelector(".help");
 
 let mainMelody = new Audio("audio/mainMelody.mp3");
