@@ -12,7 +12,6 @@ function countdown() {
 
 // конвертер времени
 function convertTime(xCounter) {
-	xCounter--;
 	let min = 0;
 
 	if (xCounter >= 60) {
