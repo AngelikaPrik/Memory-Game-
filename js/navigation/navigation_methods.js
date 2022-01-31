@@ -72,7 +72,7 @@ function showFieldAndStartGame(sizeField, difficult) {
 
 // экран с результатами игры
 
-function showWinWindow(settings) {
+function showWinWindow(time, settings) {
 	$(field_container).hide();
 	$(main_container).show();
 	$(win_window).show();
@@ -82,18 +82,18 @@ function showWinWindow(settings) {
 	let bestTimeString = getBestTimeString(settings);
 
 	score.innerHTML = `
-	<p>Твоё время:</p><span>${(convertTime(xCounter))}</span>`;
+	<p>Твоё время:</p><span>${(convertTime(time))}</span>`;
 	if (localStorage.getItem(prevTimeString) != null) {
 		score.innerHTML += `
-		<p>Предыдущий результат:</p>
-			<span>${convertTime(parseInt(localStorage.getItem(prevTimeString)))}
-		</span>`;
+	 <p>Предыдущий результат:</p>
+	  <span>${convertTime(parseInt(localStorage.getItem(prevTimeString)))}
+	 </span>`;
 	}
 	if (localStorage.getItem(bestTimeString) != null) {
 		score.innerHTML += `
-		<p>Лучший результат:</p>
-			<span>${convertTime(parseInt(localStorage.getItem(bestTimeString)))}
-		</span>`;
+	 <p>Лучший результат:</p>
+	  <span>${convertTime(parseInt(localStorage.getItem(bestTimeString)))}
+	 </span>`;
 	}
 
 	counter_block.style.visibility = "hidden";
@@ -249,28 +249,35 @@ function animateExampleCard() {
 // помощь-подсказка
 
 helpBtn.addEventListener("click", function () {
-	isWaiting = true;
-	$(helpBtn).hide(500);
-	let cards = document.querySelector(".field").querySelectorAll(".card");
-	cards.forEach(element => {
-		if (!element.classList.contains("opened")) {
-			$(element).toggleClass('flipped');
-		}
-	});
-
-	if (needToPlay) {
-		new Audio("audio/clickCard.mp3").play();
-	}
-
-	setTimeout(function () {
+	if (!isWaiting) {
+		isWaiting = true;
+		$(helpBtn).hide(500);
+		let cards = document.querySelector(".field").querySelectorAll(".card");
 		cards.forEach(element => {
-			if (!element.classList.contains("opened")) {
+			if (!element.classList.contains("opened") && !element.classList.contains("flipped")) {
 				$(element).toggleClass('flipped');
 			}
 		});
-		isWaiting = false;
+
 		if (needToPlay) {
 			new Audio("audio/clickCard.mp3").play();
 		}
-	}, 2000);
+
+		setTimeout(function () {
+			cards.forEach(element => {
+				if (!element.classList.contains("opened")) {
+					$(element).toggleClass('flipped');
+				}
+			});
+			isWaiting = false;
+			if (needToPlay) {
+				new Audio("audio/clickCard.mp3").play();
+			}
+		}, 2000);
+	} else {
+		if (needToPlay) {
+			new Audio("audio/cancel.mp3").play();
+		}
+	}
+
 });

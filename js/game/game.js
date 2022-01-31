@@ -119,7 +119,7 @@ class Game {
 				let x = element.getAttribute("x");
 				let y = element.getAttribute("y");
 				let cardValue = field[x][y];
-				
+
 				element.querySelector(".back").innerHTML = `<img src="img/cards/${cardValue}.svg" alt="">`;
 
 				if (settings.difficult == 2) {
@@ -140,14 +140,14 @@ class Game {
 			isStarted = true;
 			xCounter = 0;
 			countdown();
-			
+
 			counter_block.style.visibility = "visible";
 
 			if (needToPlay) {
 				new Audio("audio/clickCard.mp3").play();
 			}
 		}, 3000);
-		
+
 		cards.forEach(card => {
 			card.addEventListener("click", function () {
 				if (!isWaiting && (card != lastStep.card) && isStarted && !card.className.includes("flipped")) {
@@ -182,7 +182,7 @@ class Game {
 						isSuccessfulMove = true;
 						statistic.successMoveCounter++;
 						step.card.classList.add("opened");
-						lastStep.card.classList.add("opened");						
+						lastStep.card.classList.add("opened");
 						$(helpBtn).hide(500);
 						statistic.failedStepCounter = 0;
 					}
@@ -205,7 +205,7 @@ class Game {
 					// подсказка
 
 					if (statistic.failedStepCounter == 4) {
-						if(needToPlay) {
+						if (needToPlay) {
 							new Audio("audio/helpSound.mp3").play();
 						}
 						$(helpBtn).show(500);
@@ -217,21 +217,25 @@ class Game {
 						let prevTimeString = getPrevTimeString(settings);
 						let bestTimeString = getBestTimeString(settings);
 
+						let time = xCounter;
 						if (localStorage.getItem(bestTimeString) == null) {
-							localStorage.setItem(bestTimeString, xCounter);
+							localStorage.setItem(bestTimeString, time);
 						}
 						if (parseInt(localStorage.getItem(bestTimeString)) > xCounter) {
-							localStorage.setItem(bestTimeString, xCounter);
+							localStorage.setItem(bestTimeString, time);
 						}
 
-						let time = xCounter;
 						setTimeout(function () {
-							showWinWindow(settings);
+							showWinWindow(time, settings);
 							localStorage.setItem(prevTimeString, time);
 
 							xCounter = 0;
 							isStarted = false;
 						}, 1000);
+					}
+				} else {
+					if (needToPlay) {
+						new Audio("audio/cancel.mp3").play();
 					}
 				}
 			});
@@ -239,14 +243,14 @@ class Game {
 	}
 }
 
-function getPrevTimeString(settings){
+function getPrevTimeString(settings) {
 	let prevTimeString = "prevTime";
 	if (settings.rowCount == 4) {
 		prevTimeString += "4";
 	} else {
 		prevTimeString += "6";
 	}
-	if (settings.difficult == 1){
+	if (settings.difficult == 1) {
 		prevTimeString += "easy";
 	} else {
 		prevTimeString += "hard";
@@ -254,14 +258,14 @@ function getPrevTimeString(settings){
 	return prevTimeString;
 }
 
-function getBestTimeString(settings){
+function getBestTimeString(settings) {
 	let bestTimeString = "bestTime";
 	if (settings.rowCount == 4) {
 		bestTimeString += "4";
 	} else {
 		bestTimeString += "6";
 	}
-	if (settings.difficult == 1){
+	if (settings.difficult == 1) {
 		bestTimeString += "easy";
 	} else {
 		bestTimeString += "hard";
