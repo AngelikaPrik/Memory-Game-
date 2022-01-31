@@ -105,7 +105,7 @@ function playSound() {
 	}
 }
 
-// функция loading bar
+// loading bar
 
 function startProgress() {
 	if (!isProgressStarted) {
@@ -196,22 +196,19 @@ let tooltipElem;
 document.addEventListener("mouseover", (event) => {
 	let target = event.target;
 
-	// если у нас есть подсказка
 	let tooltipHtml = target.dataset.tooltip;
 	if (!tooltipHtml) return;
 
-	// ...создадим элемент для подсказки
 
 	tooltipElem = document.createElement('div');
 	tooltipElem.className = 'tooltip';
 	tooltipElem.innerHTML = tooltipHtml;
 	document.body.append(tooltipElem);
 
-	// сверху от аннотируемого элемента
 	let coords = target.getBoundingClientRect();
 
 	let left = coords.left + (target.offsetWidth - tooltipElem.offsetWidth) / 2;
-	if (left < 0) left = 0; // не заезжать за левый край окна
+	if (left < 0) left = 0;
 
 	let top = coords.top + tooltipElem.offsetHeight + 20;
 
