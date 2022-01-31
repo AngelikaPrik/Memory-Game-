@@ -18,6 +18,7 @@ const welcome_window = document.querySelector(".welcome__window"),
 	score = document.querySelector(".score"),
 	socials = document.querySelector(".socials");
 
+	
 // navigation buttons
 const btn1 = document.querySelector("#btn1"),
 	btn2 = document.querySelector("#btn2"),

@@ -228,7 +228,7 @@ document.addEventListener("mouseout", () => {
 let animationNotStarted = true;
 
 function startAnimationForExampleCard() {
-	if(animationNotStarted) {
+	if (animationNotStarted) {
 		animateExampleCard();
 		setInterval(animateExampleCard, 5000);
 		animationNotStarted = false;
@@ -261,7 +261,7 @@ helpBtn.addEventListener("click", function () {
 	if (needToPlay) {
 		new Audio("audio/clickCard.mp3").play();
 	}
-	
+
 	setTimeout(function () {
 		cards.forEach(element => {
 			if (!element.classList.contains("opened")) {

@@ -12,6 +12,7 @@ function countdown() {
 
 // конвертер времени
 function convertTime(xCounter) {
+	xCounter--;
 	let min = 0;
 
 	if (xCounter >= 60) {
@@ -24,33 +25,4 @@ function convertTime(xCounter) {
 		return `${min}:0${sec}`;
 	}
 	return `${min}:${sec}`; 
-	
-}function getPrevTimeString(settings){
-	let prevTimeString = "prevTime";
-	if (settings.rowCount == 4) {
-		prevTimeString += "4";
-	} else {
-		prevTimeString += "6";
-	}
-	if (settings.difficult == 1){
-		prevTimeString += "easy";
-	} else {
-		prevTimeString += "hard";
-	}
-	return prevTimeString;
-}
-
-function getBestTimeString(settings){
-	let bestTimeString = "bestTime";
-	if (settings.rowCount == 4) {
-		bestTimeString += "4";
-	} else {
-		bestTimeString += "6";
-	}
-	if (settings.difficult == 1){
-		bestTimeString += "easy";
-	} else {
-		bestTimeString += "hard";
-	}
-	return bestTimeString;
 }

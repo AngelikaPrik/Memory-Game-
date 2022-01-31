@@ -167,7 +167,7 @@ class Game {
 
 					//пушим ходы в историю
 					statistic.history.push(new Step(x, y, cardValue, card));
-					console.log(statistic.history);
+					// console.log(statistic.history);
 
 					// console.log("lastStep:" + JSON.stringify(lastStep) + "  currentStep:" + JSON.stringify(step));
 
@@ -205,7 +205,9 @@ class Game {
 					// подсказка
 
 					if (statistic.failedStepCounter == 4) {
-						new Audio("audio/helpSound.mp3").play();
+						if(needToPlay) {
+							new Audio("audio/helpSound.mp3").play();
+						}
 						$(helpBtn).show(500);
 						statistic.failedStepCounter = 0;
 					}
@@ -218,7 +220,7 @@ class Game {
 						if (localStorage.getItem(bestTimeString) == null) {
 							localStorage.setItem(bestTimeString, xCounter);
 						}
-						if (xCounter  < parseInt(localStorage.getItem(bestTimeString))) {
+						if (parseInt(localStorage.getItem(bestTimeString)) > xCounter) {
 							localStorage.setItem(bestTimeString, xCounter);
 						}
 
