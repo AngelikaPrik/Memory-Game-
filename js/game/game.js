@@ -1,6 +1,5 @@
 ' use strict ';
 
-// для счетчика
 let isStarted = false;
 
 //ожидание закрытия карточки
@@ -51,6 +50,7 @@ class Game {
 		let rowCount = this.settings.rowCount;
 		let items = [];
 
+		// массив парных цифр
 		for (let i = 0; i < (rowCount * rowCount) / 2; i++) {
 			items.push(i);
 			items.push(i);
@@ -96,7 +96,6 @@ class Game {
 	}
 	run() {
 
-		//объект с настройками
 		let settings = this.settings;
 
 		let statistic = new Statistic();
@@ -107,7 +106,7 @@ class Game {
 		//последний шаг
 		let lastStep = new Step();
 
-		//счетчик ходов (чтобы сбрасывать после второго)
+		//счетчик ходов
 		let stepCounter = 0;
 
 		let isSuccessfulMove = 0;
@@ -120,7 +119,7 @@ class Game {
 				let x = element.getAttribute("x");
 				let y = element.getAttribute("y");
 				let cardValue = field[x][y];
-				//todo
+				
 				element.querySelector(".back").innerHTML = `<img src="img/cards/${cardValue}.svg" alt="">`;
 
 				if (settings.difficult == 2) {
@@ -133,14 +132,11 @@ class Game {
 				new Audio("audio/clickCard.mp3").play();
 			}
 		}, 1000);
-		//после 5 секунд закрываем
 
-		//откладываем функцию на потом, здесь карточки закрываются
 		setTimeout(function () {
 			cards.forEach(element => {
 				$(element).toggleClass('flipped');
 			});
-			//todo перед начало игры
 			isStarted = true;
 			xCounter = 0;
 			countdown();
@@ -152,11 +148,8 @@ class Game {
 			}
 		}, 3000);
 		
-
-		//на клике
 		cards.forEach(card => {
 			card.addEventListener("click", function () {
-				//условие для того чтобы нажатие засчиталось
 				if (!isWaiting && (card != lastStep.card) && isStarted && !card.className.includes("flipped")) {
 					let x = card.getAttribute("x");
 					let y = card.getAttribute("y");
@@ -217,7 +210,7 @@ class Game {
 						statistic.failedStepCounter = 0;
 					}
 
-					//выход из игры (победа)
+					//выход из игры
 					if (statistic.successMoveCounter == (settings.rowCount * settings.rowCount) / 2) {
 						let prevTimeString = getPrevTimeString(settings);
 						let bestTimeString = getBestTimeString(settings);
@@ -225,7 +218,7 @@ class Game {
 						if (localStorage.getItem(bestTimeString) == null) {
 							localStorage.setItem(bestTimeString, xCounter);
 						}
-						if (parseInt(localStorage.getItem(bestTimeString)) > xCounter) {
+						if (xCounter  < parseInt(localStorage.getItem(bestTimeString))) {
 							localStorage.setItem(bestTimeString, xCounter);
 						}
 
@@ -242,4 +235,34 @@ class Game {
 			});
 		});
 	}
+}
+
+function getPrevTimeString(settings){
+	let prevTimeString = "prevTime";
+	if (settings.rowCount == 4) {
+		prevTimeString += "4";
+	} else {
+		prevTimeString += "6";
+	}
+	if (settings.difficult == 1){
+		prevTimeString += "easy";
+	} else {
+		prevTimeString += "hard";
+	}
+	return prevTimeString;
+}
+
+function getBestTimeString(settings){
+	let bestTimeString = "bestTime";
+	if (settings.rowCount == 4) {
+		bestTimeString += "4";
+	} else {
+		bestTimeString += "6";
+	}
+	if (settings.difficult == 1){
+		bestTimeString += "easy";
+	} else {
+		bestTimeString += "hard";
+	}
+	return bestTimeString;
 }

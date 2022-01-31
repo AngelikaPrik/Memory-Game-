@@ -26,10 +26,7 @@ function convertTime(xCounter) {
 	}
 	return `${min}:${sec}`; 
 	
-}
-
-// назначение ключей в localStorage в зависимости от сложности игры
-function getPrevTimeString(settings){
+}function getPrevTimeString(settings){
 	let prevTimeString = "prevTime";
 	if (settings.rowCount == 4) {
 		prevTimeString += "4";
