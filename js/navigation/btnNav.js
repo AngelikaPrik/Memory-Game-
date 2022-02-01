@@ -1,6 +1,6 @@
 ' use strict ';
 
-homeBtn.addEventListener("click", () => {
+homeBtn.addEventListener("click", function() {
 	isStarted = false;
 	$(game_rules_window).hide();
 	$(field_container).hide();
@@ -72,5 +72,5 @@ menuBtn.addEventListener("click", function () {
 	playSound();
 });
 
-musicBtn.addEventListener("click", () => breakMelody(mainMelody));
+musicBtn.addEventListener("click", function() {breakMelody(mainMelody);});
 soundBtn.addEventListener("click", switchSound);

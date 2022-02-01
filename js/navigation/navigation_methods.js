@@ -193,7 +193,7 @@ backgroundBtnChange.addEventListener("click", function () {
 
 let tooltipElem;
 
-document.addEventListener("mouseover", (event) => {
+document.addEventListener("mouseover", function(event) {
 	let target = event.target;
 
 	let tooltipHtml = target.dataset.tooltip;
@@ -216,7 +216,7 @@ document.addEventListener("mouseover", (event) => {
 	tooltipElem.style.top = top + 'px';
 });
 
-document.addEventListener("mouseout", () => {
+document.addEventListener("mouseout", function() {
 	if (tooltipElem) {
 		tooltipElem.remove();
 		tooltipElem = null;
@@ -248,7 +248,7 @@ function animateExampleCard() {
 
 // помощь-подсказка
 
-helpBtn.addEventListener("click", function () {
+helpBtn.addEventListener("click", function() {
 	if (!isWaiting) {
 		isWaiting = true;
 		$(helpBtn).hide(500);
